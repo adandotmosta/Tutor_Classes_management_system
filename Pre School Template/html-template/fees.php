@@ -1,3 +1,4 @@
+<?php ob_start();?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -126,7 +127,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="holiday.html"><i class="fas fa-holly-berry"></i> <span>Holiday</span></a>
+                            <a href="absence.php"><i class="fas fa-holly-berry"></i> <span>absence</span></a>
                         </li>
                         <li class="active">
                             <a href="fees.php"><i class="fas fa-comment-dollar"></i> <span>Fees</span></a>
@@ -277,28 +278,36 @@ $i = 0;
                                         <tbody>
                                             <?php
                                             while($row=mysqli_fetch_assoc($res)){
-                                                $id_s = $row['ID_S'];
-                                                $id_f = $row['ID_F'];
-                                                $id_c = $row['ID_C'];
-                                                $amount = $row['Amount'];
+                                                $school_id = 1;
+                                                $id_s = $row['Student_Id'];
+                                                $id_f = $row['Fees_Id'];
+                                                $id_c = $row['Class_Id'];
+                                                $amount = $row['Fees_Amount'];
+                                                $query = mysqli_query($db,"SELECT * FROM student WHERE Student_Id = $id_s");
+                                                $student_row = mysqli_fetch_row($query);
+                                                $student_name  = $student_row[3]." ".$student_row[2];
+                                                $query = mysqli_query($db,"SELECT * FROM class WHERE Class_Id = $id_c ");
+                                                $class_row  = mysqli_fetch_row($query);
+                                                $class_name = $class_row[10];
+
                                             
                                     
 
 
                                              ?>
                                             <tr>
-                                                <td>MADRASATI<?php echo $id_s ?></td>
+                                                <td><?php echo $id_s ?></td>
                                                 <td>
                                                     <h2>
-                                                        <a><?php echo "depends on the student_id"   ?></a>
+                                                        <a><?php echo $student_name   ?></a>
                                                     </h2>
                                                 </td>
-                                                <td><?php  echo "Math".$id_c   ?></td>
+                                                <td><?php  echo $class_name   ?></td>
                                                 <td><?php  echo $amount ?></td>
-                                                <td><?php   echo "fees_id".$id_f ?></td>
+                                                <td><?php    ?></td>
                                                 <td class="text-right" style="transform: translateX(-100px);">
                                                 <?php
-                                                if($row["Status"]==1){
+                                                if($row["Fees_Status"]==1){
                                                     echo "<span class='badge badge-success'>
                                                     Paid
                                                         
@@ -319,7 +328,7 @@ $i = 0;
                                                             <i class="fas fa-pen"></i>
                                                         </a>
                                                         <a class="btn btn-sm bg-success-light mr-2">
-                                                        <input type="checkbox" style="size: 1px;color:gray;" name="checked[]" value='<?php echo $row['ID_F'] ?>' ></input>
+                                                        <input type="checkbox" style="size: 1px;color:gray;" name="checked[]" value='<?php echo $row['Fees_Id'] ?>' ></input>
                                             </a>
 
                                                     </div>
@@ -334,7 +343,8 @@ $i = 0;
                             <input type="submit" value="delete" class="btn btn-danger" style="transform:translatex(1350px);" name="delete" >
                                         </div>
 
-                                        <?php 
+<?php 
+                                      //    header("Refresh:0");
                                         if(isset($_POST['delete'])){
                                           
                                                 if(isset($_POST['checked'])){
@@ -342,16 +352,25 @@ $i = 0;
                                                 
                                 
                                                
-                                                $delete_query= "DELETE FROM fees WHERE ID_F=$deletedid ;";
+                                                $delete_query= "DELETE FROM fees WHERE Fees_Id=$deletedid ;";
                                                 mysqli_query($db,$delete_query);
+                                               // echo "<script> location.reload();</script>";*
+                                               
+                                               header("Refresh:0");
+                                               ob_end_flush();
+                                               
+
+                                                 
+
                                                     }
                                             }
+                                          
                                         }
 
 
 
 
-                                        ?>
+?>
                                       </div>
                                             
 

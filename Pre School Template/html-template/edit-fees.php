@@ -217,8 +217,8 @@
                             <a href="#"><i class="fas fa-book-reader"></i> <span> Subjects</span> <span
                                     class="menu-arrow"></span></a>
                             <ul>
-                                <li><a href="subjects.html">Subject List</a></li>
-                                <li><a href="add-subject.html">Subject Add</a></li>
+                                <li><a href="subjects.php">Subject List</a></li>
+                                <li><a href="add-subject.php">Subject Add</a></li>
                                 <li><a href="edit-subject.html">Subject Edit</a></li>
                             </ul>
                         </li>
@@ -238,7 +238,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="holiday.html"><i class="fas fa-holly-berry"></i> <span>Holiday</span></a>
+                            <a href="absence.php"><i class="fas fa-holly-berry"></i> <span>absence</span></a>
                         </li>
                         <li class="active">
                             <a href="fees.php"><i class="fas fa-comment-dollar"></i> <span>Fees</span></a>
@@ -357,7 +357,7 @@
 <?php
 include 'connexion.php';
 $id_f = $_GET['sent_id'];
-$query="SELECT * FROM fees WHERE ID_F=$id_f ;";
+$query="SELECT * FROM fees WHERE Fees_Id=$id_f ;";
 $result = mysqli_query($db,$query);
 
 while($data = mysqli_fetch_assoc($result)){
@@ -376,7 +376,7 @@ while($data = mysqli_fetch_assoc($result)){
                                             <div class="col-12 col-sm-6">
                                                 <div class="form-group">
                                                     <label>Student_ID</label>
-                                                    <input type="text" class="form-control" name="id_s" value="<?php echo $data['ID_S'] ?>">
+                                                    <input type="text" class="form-control" name="id_s" value="<?php echo $data['Student_Id'] ?>">
                                                 </div>
                                             </div>
                                             <div class="col-12 col-sm-6">
@@ -388,7 +388,7 @@ while($data = mysqli_fetch_assoc($result)){
                                             <div class="col-12 col-sm-6">
                                                 <div class="form-group">
                                                     <label>Fees Amount</label>
-                                                    <input type="text" class="form-control" name="amount" value="<?php echo $data['Amount'] ?>">
+                                                    <input type="text" class="form-control" name="amount" value="<?php echo $data['Fees_Amount'] ?>">
                                                 </div>
                                             </div>
                                             <div class="col-12 col-sm-6">
@@ -401,12 +401,13 @@ while($data = mysqli_fetch_assoc($result)){
                                             <div class="col-12 col-sm-6">
 
                                                 <?php
-$que="SELECT * FROM fees WHERE ID_F=$id_f";
+$class_id = $data['Class_Id'];
+$que="SELECT * FROM class";
 $result = mysqli_query($db,$que);
 $options = '';
 
 while ($row = $result->fetch_assoc()) {
-    $options .= '<option value="' . $row['ID_C'] . '">Math' . $row['ID_C'] . '</option>';
+    $options .= '<option value="' . $row['Class_Id'] . '">' . $row['Class_Name'] . '</option>';
 }
 
 
@@ -449,8 +450,8 @@ while ($row = $result->fetch_assoc()) {
                     $id_c = $_POST['id_c'];
                     $amount = $_POST['amount'];
                     $status = $_POST['status'];
-                    echo "<h1>im here</h1>";
-                    $update_fee = "UPDATE `fees` SET `ID_S`=$id_s,`ID_C`=$id_c,`Amount`=$amount WHERE ID_F=$id_f; ";
+                
+                    $update_fee = "UPDATE `fees` SET `Student_Id`=$id_s,`Class_Id`=$id_c,`Fees_Amount`=$amount, Fees_Status =$status WHERE Fees_Id=$id_f; ";
                     mysqli_query($db,$update_fee);
 
                 }

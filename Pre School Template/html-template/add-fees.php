@@ -211,8 +211,8 @@
                             <a href="#"><i class="fas fa-book-reader"></i> <span> Subjects</span> <span
                                     class="menu-arrow"></span></a>
                             <ul>
-                                <li><a href="subjects.html">Subject List</a></li>
-                                <li><a href="add-subject.html">Subject Add</a></li>
+                                <li><a href="subjects.php">Subject List</a></li>
+                                <li><a href="add-subject.php">Subject Add</a></li>
                                 <li><a href="edit-subject.html">Subject Edit</a></li>
                             </ul>
                         </li>
@@ -232,7 +232,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="holiday.html"><i class="fas fa-holly-berry"></i> <span>Holiday</span></a>
+                            <a href="absence.php"><i class="fas fa-holly-berry"></i> <span>absence</span></a>
                         </li>
                         <li class="active">
                             <a href="fees.php"><i class="fas fa-comment-dollar"></i> <span>Fees</span></a>
@@ -390,12 +390,12 @@ include 'connexion.php';
                                             <div class="col-12 col-sm-6">
 
                                                 <?php
-$que="SELECT * FROM fees";
+$que="SELECT * FROM class";
 $result = mysqli_query($db,$que);
 $options = '';
-$classes = array("Math1","Physics","ComputerScience1","Science","economy","art");
+
 while ($row = $result->fetch_assoc()) {
-    $options .= '<option value="' . $row['ID_C'] . '">Math' . $row['ID_C'] . '</option>';
+    $options .= '<option value="' . $row['Class_Id'] . '">' . $row['Class_Name'] . '</option>';
 }
 
 
@@ -421,7 +421,7 @@ while ($row = $result->fetch_assoc()) {
                                                 </div>
                                             </div>
                                             <div class="col-12">
-                                                <input type="submit" class="btn btn-primary" name="sub">Submit</input>
+                                                <input type="submit" class="btn btn-primary" name="sub">
                                             </div>
                                         
                                     </div>
@@ -438,7 +438,7 @@ while ($row = $result->fetch_assoc()) {
                     $amount = $_POST['amount'];
                     $status = $_POST['status'];
                     echo "<h1>im here</h1>";
-                    $add_fee = "INSERT INTO `fees` VALUES (NULL, $id_s, $id_c, $amount, $status); ";
+                    $add_fee = "INSERT INTO `fees` VALUES (NULL,$amount, $id_s, $id_c,$status); ";
                     mysqli_query($db,$add_fee);
 
                 }
