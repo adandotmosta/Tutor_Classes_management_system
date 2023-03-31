@@ -391,7 +391,7 @@
 $class_id= $fetched['Class_Id'];
 $student_id = $fetched['Student_Id'];
 $absent = $fetched['absent'];
-$class_name = mysqli_query($db,"SELECT Class_Name FROM class WHERE Class_Id = $class_id");
+$class_name = mysqli_query($db,"SELECT class_name FROM class WHERE Class_Id = $class_id");
 $cls_name = mysqli_fetch_row($class_name);
 $c_name = $cls_name[0];
 $student_name = mysqli_query($db,"SELECT CONCAT(Student_LastName,' ',Student_FirstName) AS Fullname FROM Student WHERE Student_Id=$student_id");
