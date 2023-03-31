@@ -395,7 +395,7 @@ $result = mysqli_query($db,$que);
 $options = '';
 
 while ($row = $result->fetch_assoc()) {
-    $options .= '<option value="' . $row['Class_Id'] . '">' . $row['Class_Name'] . '</option>';
+    $options .= '<option value="' . $row['Class_Id'] . '">' . $row['class_name'] . '</option>';
 }
 
 
