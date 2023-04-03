@@ -1,7 +1,67 @@
+<?php
+
+
+define('DB_HOST', 'localhost');
+define('DB_USER', 'root');
+define('DB_PASS', '');
+define('DB_NAME', 'db_tutoring_classes');
+
+//create connection 
+$conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+
+//check connection 
+if($conn -> connect_error){
+    die('connection failed' . $conn -> connect_error);
+}
+
+$Resource_Text  = $Class_Id = $Resource_Link = $Resource_DueTime = '';
+$TextErr = $IdErr = $TimeErr = '';
+$today = date("m-d-Y");
+
+//form submit 
+if(isset($_POST['submit'])){
+    //validate text
+    if(empty($_POST['Resource_Text'])){
+            $TextErr = 'this is Required';
+        }else{
+            $Resource_Text = filter_input(INPUT_POST, 'Resource_Text', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        }
+        //validate class
+        if(empty($_POST['Class_Id'])){
+            $IdErr = 'wrong id or empty id';
+        }else{
+            $Class_Id = filter_input(INPUT_POST, 'Class_Id', FILTER_SANITIZE_SPECIAL_CHARS);
+        }
+        //validate link
+        if(empty($_POST['Resource_Link'])){
+            $Resource_Link = 'No attachements';
+        }else{
+            $Resource_Link = filter_input(INPUT_POST, 'Resource_Link', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        }
+        //validate date
+        if(empty($_POST['Resource_DueTime'])){
+            $TimeErr = 'you should set a due date';
+        }else{
+            $Resource_DueTime = filter_input(INPUT_POST, 'Resource_DueTime', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        }
+        if(empty($TimeErr) && empty($IdErr) && empty($TextErr)){
+            //adding to DB
+            $sql = "INSERT INTO resources (Resource_Text, Class_Id, Resource_Link, Resource_DueTime) VALUES ('$Resource_Text', '$Class_Id', '$Resource_Link', '$Resource_DueTime')";
+        if(mysqli_query($conn, $sql)){
+            //success
+            echo "<script>window.location = 'event.php'</script>";
+        }else{
+           //Error
+            echo "Error: " . mysqli_error($conn);
+        }
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from preschool.dreamguystech.com/html-template/add-events.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 28 Oct 2021 11:12:21 GMT -->
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
@@ -221,7 +281,7 @@
 <a href="exam.html"><i class="fas fa-clipboard-list"></i> <span>Exam list</span></a>
 </li>
 <li class="active">
-<a href="event.html"><i class="fas fa-calendar-day"></i> <span>Events</span></a>
+<a href="event.php"><i class="fas fa-calendar-day"></i> <span>Events</span></a>
 </li>
 <li>
 <a href="time-table.html"><i class="fas fa-table"></i> <span>Time Table</span></a>
@@ -327,33 +387,42 @@
 <div class="col-sm-12">
 <div class="card">
 <div class="card-body">
-<form>
-<div class="row">
-<div class="col-12">
-<h5 class="form-title"><span>Event Information</span></h5>
-</div>
-<div class="col-12 col-sm-6">
-<div class="form-group">
-<label>Event ID</label>
-<input type="text" class="form-control">
-</div>
-</div>
-<div class="col-12 col-sm-6">
-<div class="form-group">
-<label>Event Name</label>
-<input type="text" class="form-control">
-</div>
-</div>
-<div class="col-12 col-sm-6">
-<div class="form-group">
-<label>Event Date</label>
-<input type="date" class="form-control">
-</div>
-</div>
-<div class="col-12">
-<button type="submit" class="btn btn-primary">Submit</button>
-</div>
-</div>
+<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+    <div class="row">
+        <div class="col-12">
+            <h5 class="form-title"><span>Event Information</span></h5>
+        </div>
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <label>Information</label>
+                <input type="text" class="form-control <?php echo !$TextErr ?:
+           'is-invalid'; ?>" placeholder="brief description of the content" value="<?php echo $Resource_Text; ?>" name="Resource_Text">
+            </div>
+        </div>
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <label>Classes concerned</label>
+                <input type="text" class="form-control <?php echo !$IdErr ?:
+           'is-invalid'; ?>" placeholder="class here" value="<?php echo $Class_Id; ?>" name="Class_Id">
+            </div>
+        </div>
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <label>Due Date</label>
+                <input type="date" class="form-control <?php echo !$TimeErr ?:
+           'is-invalid'; ?>" placeholder="deadline" value="<?php echo $Resource_DueTime; ?>" name="Resource_DueTime">
+            </div>
+        </div>
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <label>Useful links</label>
+                <input type="text" class="form-control " placeholder="Links related to the assignments document" value="<?php echo $Resource_Link; ?>" name="Resource_Link">
+            </div>
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+        </div>
+    </div>
 </form>
 </div>
 </div>
@@ -375,5 +444,4 @@
 <script src="assets/js/script.js"></script>
 </body>
 
-<!-- Mirrored from preschool.dreamguystech.com/html-template/add-events.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 28 Oct 2021 11:12:21 GMT -->
 </html>

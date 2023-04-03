@@ -1,11 +1,71 @@
+<?php
+
+
+define('DB_HOST', 'localhost');
+define('DB_USER', 'root');
+define('DB_PASS', '');
+define('DB_NAME', 'db_tutoring_classes');
+
+
+//create connection 
+$conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+
+//check connection 
+if($conn -> connect_error){
+    die('connection failed' . $conn -> connect_error);
+}
+
+
+$id_R = $_GET['editId'];
+$query="SELECT * FROM resources WHERE Resource_Id=$id_R ;";
+$result = mysqli_query($db,$query);
+
+if(isset($_POST['edit'])){
+    //validate text
+    if(empty($_POST['Resource_Text'])){
+            $TextErr = 'this is Required';
+        }else{
+            $Resource_Text = filter_input(INPUT_POST, 'Resource_Text', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        }
+        //validate class
+        if(empty($_POST['Class_Id'])){
+            $IdErr = 'wrong id or empty id';
+        }else{
+            $Class_Id = filter_input(INPUT_POST, 'Class_Id', FILTER_SANITIZE_SPECIAL_CHARS);
+        }
+        //validate link
+        if(empty($_POST['Resource_Link'])){
+            $Resource_Link = 'No attachements';
+        }else{
+            $Resource_Link = filter_input(INPUT_POST, 'Resource_Link', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        }
+        //validate date
+        if(empty($_POST['Resource_DueTime'])){
+            $TimeErr = 'you should set a due date';
+        }else{
+            $Resource_DueTime = filter_input(INPUT_POST, 'Resource_DueTime', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        }
+        if(empty($TimeErr) && empty($IdErr) && empty($TextErr)){
+            //adding to DB
+            $sql = "UPDATE resources  SET (Resource_Text= '$Resource_Text', Class_Id= '$Class_Id, Resource_Link = '$Resource_Link', Resource_DueTime= '$Resource_DueTime') WHERE Resource_Id = $Resource_Id";
+        if(mysqli_query($conn, $sql)){
+            //success
+            echo "<script>window.location = 'event.php'</script>";
+        }else{
+           //Error
+            echo "Error: " . mysqli_error($conn);
+        }
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from preschool.dreamguystech.com/html-template/event.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 28 Oct 2021 11:11:52 GMT -->
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-<title>Preskool - Holiday</title>
+<title>Preskool - Events</title>
 
 <link rel="shortcut icon" href="assets/img/favicon.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,600;0,700;1,400&amp;display=swap">
@@ -14,10 +74,6 @@
 
 <link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
 <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
-
-<link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css">
-
-<link rel="stylesheet" href="assets/plugins/fullcalendar/fullcalendar.min.css">
 
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -98,7 +154,7 @@
 <span class="avatar avatar-sm">
 <img class="avatar-img rounded-circle" alt="User Image" src="assets/img/profiles/avatar-17.jpg">
 </span>
-<div class="media-body">
+ <div class="media-body">
 <p class="noti-details"><span class="noti-title">John Hendry</span> sent a cancellation request <span class="noti-title">Apple iPhone XR</span></p>
 <p class="noti-time"><span class="notification-time">8 mins ago</span></p>
 </div>
@@ -225,7 +281,7 @@
 <a href="exam.html"><i class="fas fa-clipboard-list"></i> <span>Exam list</span></a>
 </li>
 <li class="active">
-<a href="event.html"><i class="fas fa-calendar-day"></i> <span>Events</span></a>
+<a href="event.php"><i class="fas fa-calendar-day"></i> <span>Events</span></a>
 </li>
 <li>
 <a href="time-table.html"><i class="fas fa-table"></i> <span>Time Table</span></a>
@@ -318,50 +374,68 @@
 <div class="page-header">
 <div class="row align-items-center">
 <div class="col">
-<h3 class="page-title">Events</h3>
+<h3 class="page-title">Add Event</h3>
 <ul class="breadcrumb">
-<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-<li class="breadcrumb-item active">Events</li>
+<li class="breadcrumb-item"><a href="event.html">Events</a></li>
+<li class="breadcrumb-item active">Add Event</li>
 </ul>
-</div>
-<div class="col-auto text-right float-right ml-auto">
-<a href="add-events.html" class="btn btn-primary"><i class="fas fa-plus"></i></a>
 </div>
 </div>
 </div>
 
 <div class="row">
-<div class="col-lg-12 col-md-12">
+<div class="col-sm-12">
 <div class="card">
 <div class="card-body">
-<div id="calendar"></div>
-</div>
-</div>
-</div>
-</div>
+<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+<?php
+    if($data = mysqli_fetch_assoc($result)){ 
+?>
+    <div class="row">
+        <div class="col-12">
+            <h5 class="form-title"><span>Event Information</span></h5>
+        </div>
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <label>Information</label>
+                <input type="text" class="form-control <?php echo !$TextErr ?:
+           'is-invalid'; ?>" placeholder="brief description of the content" value="<?php echo $Resource_Text; ?>" name="Resource_Text">
+            </div>
+        </div>
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <label>Classes concerned</label>
+                <input type="text" class="form-control <?php echo !$IdErr ?:
+           'is-invalid'; ?>" placeholder="class here" value="<?php echo $Class_Id; ?>" name="Class_Id">
+            </div>
+        </div>
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <label>Due Date</label>
+                <input type="date" class="form-control <?php echo !$TimeErr ?:
+           'is-invalid'; ?>" placeholder="deadline" value="<?php echo $Resource_DueTime; ?>" name="Resource_DueTime">
+            </div>
+        </div>
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <label>Useful links</label>
+                <input type="text" class="form-control " placeholder="Links related to the assignments document" value="<?php echo $Resource_Link; ?>" name="Resource_Link">
+            </div>
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary" name="edit">Edit</button>
+        </div>
+    </div>
+<?php
+    }
 
-<div class="modal fade none-border" id="my_event">
-<div class="modal-dialog modal-dialog-centered">
-<div class="modal-content">
-<div class="modal-header">
-<h4 class="modal-title">Add Event</h4>
-<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-</div>
-<div class="modal-body"></div>
-<div class="modal-footer justify-content-center">
-<button type="button" class="btn btn-success save-event submit-btn">Create event</button>
-<button type="button" class="btn btn-danger delete-event submit-btn" data-dismiss="modal">Delete</button>
+?>
+</form>
 </div>
 </div>
 </div>
 </div>
-
 </div>
-
-<footer>
-<p>Copyright © 2020 Dreamguys.</p>
-</footer>
-
 </div>
 
 </div>
@@ -374,15 +448,7 @@
 
 <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
-<script src="assets/js/moment.min.js"></script>
-<script src="assets/js/bootstrap-datetimepicker.min.js"></script>
-
-<script src="assets/js/jquery-ui.min.js"></script>
-<script src="assets/plugins/fullcalendar/fullcalendar.min.js"></script>
-<script src="assets/plugins/fullcalendar/jquery.fullcalendar.js"></script>
-
 <script src="assets/js/script.js"></script>
 </body>
 
-<!-- Mirrored from preschool.dreamguystech.com/html-template/event.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 28 Oct 2021 11:11:57 GMT -->
 </html>
