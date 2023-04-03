@@ -1,63 +1,75 @@
 <?php
 
-
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', '');
-define('DB_NAME', 'db_tutoring_classes');
-
-
-//create connection 
-$conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-
-//check connection 
-if($conn -> connect_error){
-    die('connection failed' . $conn -> connect_error);
-}
-
-
-$id_R = $_GET['editId'];
-$query="SELECT * FROM resources WHERE Resource_Id=$id_R ;";
-$result = mysqli_query($db,$query);
-
-if(isset($_POST['edit'])){
-    //validate text
+// Check if the resource ID is provided in the URL
+if (!isset($_GET['id'])) {
+    // Redirect to the main page if no resource ID is provided
+    header('Location: event.php');
+    exit();
+  }
+  
+  // Get the resource ID from the URL
+  $id = $_GET['id'];
+  
+  define('DB_HOST', 'localhost');
+  define('DB_USER', 'root');
+  define('DB_PASS', '');
+  define('DB_NAME', 'db_tutoring_classes');
+  
+  //create connection 
+  $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+  
+  //check connection 
+  if($conn -> connect_error){
+      die('connection failed' . $conn -> connect_error);
+  }
+  $TimeErr = $IdErr = $TextErr = '';
+  $sql = "SELECT * FROM resources WHERE Resource_Id = $id";
+  $result = mysqli_query($conn, $sql);
+  
+  // Check if the resource exists
+  if (mysqli_num_rows($result) == 0) {
+    // Redirect to the main page if the resource doesn't exist
+    header('Location: event.php');
+    exit();
+  }
+  
+  // Retrieve the resource data from the database
+  $item = mysqli_fetch_assoc($result);
+  
+  // Check if the form is submitted
+  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if(empty($_POST['Resource_Text'])){
-            $TextErr = 'this is Required';
-        }else{
-            $Resource_Text = filter_input(INPUT_POST, 'Resource_Text', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        }
-        //validate class
-        if(empty($_POST['Class_Id'])){
-            $IdErr = 'wrong id or empty id';
-        }else{
-            $Class_Id = filter_input(INPUT_POST, 'Class_Id', FILTER_SANITIZE_SPECIAL_CHARS);
-        }
-        //validate link
-        if(empty($_POST['Resource_Link'])){
-            $Resource_Link = 'No attachements';
-        }else{
-            $Resource_Link = filter_input(INPUT_POST, 'Resource_Link', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        }
-        //validate date
-        if(empty($_POST['Resource_DueTime'])){
-            $TimeErr = 'you should set a due date';
-        }else{
-            $Resource_DueTime = filter_input(INPUT_POST, 'Resource_DueTime', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        }
-        if(empty($TimeErr) && empty($IdErr) && empty($TextErr)){
-            //adding to DB
-            $sql = "UPDATE resources  SET (Resource_Text= '$Resource_Text', Class_Id= '$Class_Id, Resource_Link = '$Resource_Link', Resource_DueTime= '$Resource_DueTime') WHERE Resource_Id = $Resource_Id";
-        if(mysqli_query($conn, $sql)){
-            //success
-            echo "<script>window.location = 'event.php'</script>";
-        }else{
-           //Error
-            echo "Error: " . mysqli_error($conn);
-        }
+        $TextErr = 'this is Required';
+    }else{
+        $Resource_Text = filter_input(INPUT_POST, 'Resource_Text', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     }
-}
-?>
+    //validate class
+    if(empty($_POST['Class_Id'])){
+        $IdErr = 'wrong id or empty id';
+    }else{
+        $Class_Id = filter_input(INPUT_POST, 'Class_Id', FILTER_SANITIZE_SPECIAL_CHARS);
+    }
+    //validate link
+    if(empty($_POST['Resource_Link'])){
+        $Resource_Link = 'No attachements';
+    }else{
+        $Resource_Link = filter_input(INPUT_POST, 'Resource_Link', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    }
+    //validate date
+    if(empty($_POST['Resource_DueTime'])){
+        $TimeErr = 'you should set a due date';
+    }else{
+        $Resource_DueTime = filter_input(INPUT_POST, 'Resource_DueTime', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    }
+    // Update the resource in the database
+    $sql = "UPDATE resources SET Resource_Text = '$Resource_Text', Class_Id = '$Class_Id', Resource_DueTime = '$Resource_DueTime', Resource_Link= '$Resource_Link' WHERE Resource_Id = $id";
+    mysqli_query($conn, $sql);
+  
+    // Redirect to the main page after updating the resource
+    header('Location: event.php');
+    exit();
+  }
+  ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -377,7 +389,7 @@ if(isset($_POST['edit'])){
 <h3 class="page-title">Add Event</h3>
 <ul class="breadcrumb">
 <li class="breadcrumb-item"><a href="event.html">Events</a></li>
-<li class="breadcrumb-item active">Add Event</li>
+<li class="breadcrumb-item active">Edit Event</li>
 </ul>
 </div>
 </div>
@@ -388,9 +400,6 @@ if(isset($_POST['edit'])){
 <div class="card">
 <div class="card-body">
 <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-<?php
-    if($data = mysqli_fetch_assoc($result)){ 
-?>
     <div class="row">
         <div class="col-12">
             <h5 class="form-title"><span>Event Information</span></h5>
@@ -399,37 +408,33 @@ if(isset($_POST['edit'])){
             <div class="form-group">
                 <label>Information</label>
                 <input type="text" class="form-control <?php echo !$TextErr ?:
-           'is-invalid'; ?>" placeholder="brief description of the content" value="<?php echo $Resource_Text; ?>" name="Resource_Text">
+           'is-invalid'; ?>" placeholder="brief description of the content" value="<?php echo $item['Resource_Text']; ?>" name="Resource_Text">
             </div>
         </div>
         <div class="col-12 col-sm-6">
             <div class="form-group">
                 <label>Classes concerned</label>
                 <input type="text" class="form-control <?php echo !$IdErr ?:
-           'is-invalid'; ?>" placeholder="class here" value="<?php echo $Class_Id; ?>" name="Class_Id">
+           'is-invalid'; ?>" placeholder="class here" value="<?php echo $item['Class_Id']; ?>" name="Class_Id">
             </div>
         </div>
         <div class="col-12 col-sm-6">
             <div class="form-group">
                 <label>Due Date</label>
                 <input type="date" class="form-control <?php echo !$TimeErr ?:
-           'is-invalid'; ?>" placeholder="deadline" value="<?php echo $Resource_DueTime; ?>" name="Resource_DueTime">
+           'is-invalid'; ?>" placeholder="deadline" value="<?php echo date('m-d-Y', strtotime($item['Resource_DueTime'])); ?>" name="Resource_DueTime">
             </div>
         </div>
         <div class="col-12 col-sm-6">
             <div class="form-group">
                 <label>Useful links</label>
-                <input type="text" class="form-control " placeholder="Links related to the assignments document" value="<?php echo $Resource_Link; ?>" name="Resource_Link">
+                <input type="text" class="form-control " placeholder="Links related to the assignments document" value="<?php echo $item['Resource_Link']; ?>" name="Resource_Link">
             </div>
         </div>
         <div class="col-12">
-            <button type="submit" class="btn btn-primary" name="edit">Edit</button>
+            <button type="submit" class="btn btn-primary" name="edit">Done</button>
         </div>
     </div>
-<?php
-    }
-
-?>
 </form>
 </div>
 </div>

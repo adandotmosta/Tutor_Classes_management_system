@@ -367,7 +367,7 @@ $resources = mysqli_fetch_all($result, MYSQLI_ASSOC);
    date_create($item['Resource_DueTime']),
    'l jS F Y'
  ); ?></div>
-      <a href="edit-event.php?editId =<?php echo $item['Resource_Id']; ?>" class="btn btn-primary mt-3">Edit</a>
+      <a href="edit-event.php?id=<?php echo $item['Resource_Id']; ?>" class="btn btn-primary mt-3">Edit</a>
       <button class="btn btn-danger mt-3" data-toggle="modal" data-target="#deleteModal-<?php echo $item['Resource_Id']; ?>" name="delete">Delete</button>
       <!-- Delete Modal -->
       <div class="modal fade" id="deleteModal-<?php echo $item['Resource_Id']; ?>" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel-<?php echo $item['Resource_Id']; ?>" aria-hidden="true">
