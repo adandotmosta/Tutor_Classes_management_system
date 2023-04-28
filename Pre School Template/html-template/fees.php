@@ -1,4 +1,7 @@
-<?php ob_start();?>
+<?php ob_start();
+session_start();
+$school_id = $_SESSION['School_Id'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,208 +28,114 @@
 
 <body>
 
-    <div class="main-wrapper">
-
-        <div class="header">
-
+<div class="main-wrapper">
+         <div class="header">
             <div class="header-left">
-                <a href="index.php" class="logo">
-                    <img src="assets/img/logo.png" alt="Logo">
-                </a>
-                <a href="index.html" class="logo logo-small">
-                    <img src="assets/img/logo-small.png" alt="Logo" width="30" height="30">
-                </a>
+               <a href="index.php" class="logo">
+               <img src="assets/img/logo.png" alt="Logo">
+               </a>
+               <a href="index.php" class="logo logo-small">
+               <img src="assets/img/logo-small.png" alt="Logo" width="30" height="30">
+               </a>
             </div>
-
             <a href="javascript:void(0);" id="toggle_btn">
-                <i class="fas fa-align-left"></i>
+            <i class="fas fa-align-left"></i>
             </a>
-
-            <div class="top-nav-search">
-                <form>
-                    <input type="text" class="form-control" placeholder="Search here">
-                    <button class="btn" type="submit"><i class="fas fa-search"></i></button>
-                </form>
-            </div>
-
-
             <a class="mobile_btn" id="mobile_btn">
-                <i class="fas fa-bars"></i>
+            <i class="fas fa-bars"></i>
             </a>
-
-        </div>
-
-
-        <div class="sidebar" id="sidebar">
+            <ul class="nav user-menu">
+               <li class="nav-item dropdown has-arrow">
+                  <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                  <span class="user-img"><img class="rounded-circle" src="assets/img/profiles/avatar-01.jpg" width="31" alt="Ryan Taylor"></span>
+                  </a>
+                  <div class="dropdown-menu">
+                     <div class="user-header">
+                        <div class="avatar avatar-sm">
+                           <img src="assets/img/profiles/avatar-01.jpg" alt="User Image" class="avatar-img rounded-circle">
+                        </div>
+                        <div class="user-text">
+                           <h6>Administrator</h6>
+                           <p class="text-muted mb-0">Administrator</p>
+                        </div>
+                     </div>
+                     <a class="dropdown-item" href="login.html">Logout</a>
+                  </div>
+               </li>
+            </ul>
+         </div>
+         <div class="sidebar" id="sidebar">
             <div class="sidebar-inner slimscroll">
-                <div id="sidebar-menu" class="sidebar-menu">
-                    <ul>
-                        <li class="menu-title">
-                            <span>Main Menu</span>
-                        </li>
-                        <li class="submenu">
-                            <a href="#"><i class="fas fa-user-graduate"></i> <span> Dashboard</span> <span
-                                    class="menu-arrow"></span></a>
-                            <ul>
-                                <li><a href="index.php">Admin Dashboard</a></li>
-                                <li><a href="teacher-dashboard.html">Teacher Dashboard</a></li>
-                                <li><a href="student-dashboard.html">Student Dashboard</a></li>
-                            </ul>
-                        </li>
-                        <li class="submenu">
-                            <a href="#"><i class="fas fa-user-graduate"></i> <span> Students</span> <span
-                                    class="menu-arrow"></span></a>
-                            <ul>
-                                <li><a href="students.html">Student List</a></li>
-                                <li><a href="student-details.html">Student View</a></li>
-                                <li><a href="add-student.html">Student Add</a></li>
-                                <li><a href="edit-student.html">Student Edit</a></li>
-                            </ul>
-                        </li>
-                        <li class="submenu">
-                            <a href="#"><i class="fas fa-chalkboard-teacher"></i> <span> Teachers</span> <span
-                                    class="menu-arrow"></span></a>
-                            <ul>
-                                <li><a href="teachers.html">Teacher List</a></li>
-                                <li><a href="teacher-details.html">Teacher View</a></li>
-                                <li><a href="add-teacher.html">Teacher Add</a></li>
-                                <li><a href="edit-teacher.html">Teacher Edit</a></li>
-                            </ul>
-                        </li>
-                        <li class="submenu">
-                            <a href="#"><i class="fas fa-building"></i> <span> Departments</span> <span
-                                    class="menu-arrow"></span></a>
-                            <ul>
-                                <li><a href="departments.php">Department List</a></li>
-                                <li><a href="add-department.html">Department Add</a></li>
-                                <li><a href="edit-department.html">Department Edit</a></li>
-                            </ul>
-                        </li>
-                        <li class="submenu">
-                            <a href="#"><i class="fas fa-book-reader"></i> <span> Subjects</span> <span
-                                    class="menu-arrow"></span></a>
-                            <ul>
-                                <li><a href="subjects.html">Subject List</a></li>
-                                <li><a href="add-subject.html">Subject Add</a></li>
-                                <li><a href="edit-subject.html">Subject Edit</a></li>
-                            </ul>
-                        </li>
-                        <li class="menu-title">
-                            <span>Management</span>
-                        </li>
-                        <li class="submenu">
-                            <a href="#"><i class="fas fa-file-invoice-dollar"></i> <span> Accounts</span> <span
-                                    class="menu-arrow"></span></a>
-                            <ul>
-                                <li><a href="fees-collections.html">Fees Collection</a></li>
-                                <li><a href="expenses.html">Expenses</a></li>
-                                <li><a href="salary.html">Salary</a></li>
-                                <li><a href="add-fees-collection.html">Add Fees</a></li>
-                                <li><a href="add-expenses.html">Add Expenses</a></li>
-                                <li><a href="add-salary.html">Add Salary</a></li>
-                            </ul>
-                        </li>
-                        <li>
+               <div id="sidebar-menu" class="sidebar-menu">
+                  <ul>
+                     <li class="menu-title">
+                        <span>Main Menu</span>
+                     </li>
+                     <li class="submenu">
+                        <a href="index.php"><i class="fas fa-user-graduate"></i> <span> Dashboard</span> <span class="menu-arrow"></span></a>
+                        <ul>
+                           <li><a href="index.php">Admin Dashboard</a></li>
+                        </ul>
+                     </li>
+                     <li class="submenu">
+                        <a href="#"><i class="fas fa-user-graduate"></i> <span> Students</span> <span class="menu-arrow"></span></a>
+                        <ul>
+                           <li><a href="students.php">Student List</a></li>
+                          
+                           <a href="#"><i class="fas fa-user-graduate"></i> <span> Add student / supervisor</span> <span class="menu-arrow"></span></a>
+                           <ul>
+                           <li><a href="add-supervisor.php">Supervisor</a></li>
+                           <li><a href="add-student.php">student</a></li>
+
+                           </ul>
+                    
+                        </ul>
+                     </li>
+                     <li class="submenu">
+                        <a href="#"><i class="fas fa-chalkboard-teacher"></i> <span> Teachers</span> <span class="menu-arrow"></span></a>
+                        <ul>
+                           <li><a href="teachers.php">Teacher List</a></li>
+                           <li><a href="add-teacher.php">Teacher Add</a></li>
+                        </ul>
+                     </li>
+                   
+<li class="submenu">
+<a href="#"><i class="fas fa-building"></i> <span> Classes</span> <span class="menu-arrow"></span></a>
+<ul>
+<li><a href="departments.php">Class List</a></li>
+<li><a href="add-department.php" >Class Add</a></li>
+<!-- <li><a href="edit-department.php">Department Edit</a></li> -->
+</ul>
+</li>
+                     <li class="submenu">
+                        <a href="#"><i class="fas fa-book-reader"></i> <span> Subjects</span> <span class="menu-arrow"></span></a>
+                        <ul>
+                           <li><a href="subjects.php">Subject List</a></li>
+                           <li><a href="add-subject.php">Subject Add</a></li>
+                        </ul>
+                     </li>
+
+
+                     <li>
+                        <a href="fees.php"><i class="fas fa-comment-dollar"></i> <span>Fees</span></a>
+                     </li>
+                     <li>
                             <a href="absence.php"><i class="fas fa-holly-berry"></i> <span>absence</span></a>
                         </li>
-                        <li class="active">
-                            <a href="fees.php"><i class="fas fa-comment-dollar"></i> <span>Fees</span></a>
-                        </li>
                         <li>
-                            <a href="exam.html"><i class="fas fa-clipboard-list"></i> <span>Exam list</span></a>
-                        </li>
-                        <li>
-                            <a href="event.html"><i class="fas fa-calendar-day"></i> <span>Events</span></a>
-                        </li>
-                        <li>
-                            <a href="time-table.html"><i class="fas fa-table"></i> <span>Time Table</span></a>
-                        </li>
-                        <li>
-                            <a href="library.html"><i class="fas fa-book"></i> <span>Library</span></a>
-                        </li>
-                        <li class="menu-title">
-                            <span>Pages</span>
-                        </li>
-                        <li class="submenu">
-                            <a href="#"><i class="fas fa-shield-alt"></i> <span> Authentication </span> <span
-                                    class="menu-arrow"></span></a>
-                            <ul>
-                                <li><a href="login.html">Login</a></li>
-                                <li><a href="register.html">Register</a></li>
-                                <li><a href="forgot-password.html">Forgot Password</a></li>
-                                <li><a href="error-404.html">Error Page</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="blank-page.html"><i class="fas fa-file"></i> <span>Blank Page</span></a>
-                        </li>
-                        <li class="menu-title">
-                            <span>Others</span>
-                        </li>
-                        <li>
-                            <a href="sports.html"><i class="fas fa-baseball-ball"></i> <span>Sports</span></a>
-                        </li>
-                        <li>
-                            <a href="hostel.html"><i class="fas fa-hotel"></i> <span>Hostel</span></a>
-                        </li>
-                        <li>
-                            <a href="transport.html"><i class="fas fa-bus"></i> <span>Transport</span></a>
-                        </li>
-                        <li class="menu-title">
-                            <span>UI Interface</span>
-                        </li>
-                        <li>
-                            <a href="components.html"><i class="fas fa-vector-square"></i> <span>Components</span></a>
-                        </li>
-                        <li class="submenu">
-                            <a href="#"><i class="fas fa-columns"></i> <span> Forms </span> <span
-                                    class="menu-arrow"></span></a>
-                            <ul>
-                                <li><a href="form-basic-inputs.html">Basic Inputs </a></li>
-                                <li><a href="form-input-groups.html">Input Groups </a></li>
-                                <li><a href="form-horizontal.html">Horizontal Form </a></li>
-                                <li><a href="form-vertical.html"> Vertical Form </a></li>
-                                <li><a href="form-mask.html"> Form Mask </a></li>
-                                <li><a href="form-validation.html"> Form Validation </a></li>
-                            </ul>
-                        </li>
-                        <li class="submenu">
-                            <a href="#"><i class="fas fa-table"></i> <span> Tables </span> <span
-                                    class="menu-arrow"></span></a>
-                            <ul>
-                                <li><a href="tables-basic.html">Basic Tables </a></li>
-                                <li><a href="data-tables.html">Data Table </a></li>
-                            </ul>
-                        </li>
-                        <li class="submenu">
-                            <a href="javascript:void(0);"><i class="fas fa-code"></i> <span>Multi Level</span> <span
-                                    class="menu-arrow"></span></a>
-                            <ul>
-                                <li class="submenu">
-                                    <a href="javascript:void(0);"> <span>Level 1</span> <span
-                                            class="menu-arrow"></span></a>
-                                    <ul>
-                                        <li><a href="javascript:void(0);"><span>Level 2</span></a></li>
-                                        <li class="submenu">
-                                            <a href="javascript:void(0);"> <span> Level 2</span> <span
-                                                    class="menu-arrow"></span></a>
-                                            <ul>
-                                                <li><a href="javascript:void(0);">Level 3</a></li>
-                                                <li><a href="javascript:void(0);">Level 3</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="javascript:void(0);"> <span>Level 2</span></a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);"> <span>Level 1</span></a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
+<a href="event.php"><i class="fas fa-calendar-day"></i> <span>Ressources</span></a>
+</li>
+
+
+
+
+ 
+
+
+                  </ul>
+               </div>
             </div>
-        </div>
+         </div>
 
 
         <div class="page-wrapper">
@@ -250,7 +159,7 @@
                 </div>
 <?php 
 include 'connexion.php';
-$query = "SELECT * FROM fees";
+$query = "SELECT * FROM fees WHERE Class_Id IN (SELECT Class_Id FROM class WHERE School_Id=$school_id);";
 $res = mysqli_query($db,$query);
 $i = 0;
 //$arr = array("BelarbiAbdenour","Azemdroub malek","Boukhalfa Houssem eddine","salamani amine","Amrouche faycal","bendi abderraouf","Hamou nadir");
@@ -283,12 +192,13 @@ $i = 0;
                                                 $id_f = $row['Fees_Id'];
                                                 $id_c = $row['Class_Id'];
                                                 $amount = $row['Fees_Amount'];
+                                                $Fees_date = $row['Fees_Date'];
                                                 $query = mysqli_query($db,"SELECT * FROM student WHERE Student_Id = $id_s");
                                                 $student_row = mysqli_fetch_row($query);
                                                 $student_name  = $student_row[3]." ".$student_row[2];
                                                 $query = mysqli_query($db,"SELECT * FROM class WHERE Class_Id = $id_c ");
                                                 $class_row  = mysqli_fetch_row($query);
-                                                $class_name = $class_row[10];
+                                                $class_name = $class_row[9];
 
                                             
                                     
@@ -304,7 +214,7 @@ $i = 0;
                                                 </td>
                                                 <td><?php  echo $class_name   ?></td>
                                                 <td><?php  echo $amount ?></td>
-                                                <td><?php    ?></td>
+                                                <td><?php  echo $Fees_date  ?></td>
                                                 <td class="text-right" style="transform: translateX(-100px);">
                                                 <?php
                                                 if($row["Fees_Status"]==1){

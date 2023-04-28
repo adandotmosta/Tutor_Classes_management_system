@@ -1,13 +1,13 @@
 <?php
-
+session_start();
+$c_id  =$_SESSION['School_Id'];
 require 'connexion.php';
 
 if(isset($_GET['id'])){
     $subname=$_POST['subname'];
-    $subclas=$_POST['subclas'];
     $id=$_POST['id'];
     
-    $upreq = "update  module set Module_Name='$subname', School_Id='$subclas' where Module_Id= '$id'";
+    $upreq = "update  module set Module_Name='$subname' where Module_Id= '$id'";
     $up=mysqli_query($db,$upreq);
 
     if(isset($up)){
@@ -18,13 +18,12 @@ if(isset($_GET['id'])){
 
 
 $subname=$_POST['subname'];
-$subclas=$_POST['subclas'];
 
 
 
 
 
-$requete = "INSERT INTO module ( Module_Name, School_Id) VALUES ('$subname','$subclas')";
+$requete = "INSERT INTO module  VALUES (NULL,'$subname',$c_id)";
 $query=mysqli_query($db,$requete);
 
 if(isset($query)){

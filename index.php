@@ -58,6 +58,7 @@
                         session_start();
                         $_SESSION['School_Id'] = $row['School_Id'];
                         $_SESSION['School_Name'] = $row['School_Name'];
+                        $_SESSION['Session_System'] = $row['Session_System'];
 
                         echo "<script>window.location.href='Pre School Template/html-template/index.php'</script>"; 
                     }  

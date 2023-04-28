@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from preschool.dreamguystech.com/html-template/teacher-dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 28 Oct 2021 11:11:40 GMT -->
+<!-- Mirrored from preschool.dreamguystech.com/html-template/teachers.php by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 28 Oct 2021 11:11:50 GMT -->
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-<title>Preskool - Dashboard</title>
+<title>Teachers</title>
 
 <link rel="shortcut icon" href="assets/img/favicon.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,600;0,700;1,400&amp;display=swap">
@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
 <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
 
-<link rel="stylesheet" href="assets/plugins/simple-calendar/simple-calendar.css">
+<link rel="stylesheet" href="assets/plugins/datatables/datatables.min.css">
 
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -26,7 +26,7 @@
 <div class="header">
 
 <div class="header-left">
-<a href="index.php" class="logo">
+<a href="index.html" class="logo">
 <img src="assets/img/logo.png" alt="Logo">
 </a>
 <a href="index.html" class="logo logo-small">
@@ -157,11 +157,11 @@
 <li class="menu-title">
 <span>Main Menu</span>
 </li>
-<li class="submenu active">
+<li class="submenu">
 <a href="#"><i class="fas fa-user-graduate"></i> <span> Dashboard</span> <span class="menu-arrow"></span></a>
 <ul>
-<li><a href="index.php">Admin Dashboard</a></li>
-<li><a href="teacher-dashboard.html" class="active">Teacher Dashboard</a></li>
+<li><a href="index.html">Admin Dashboard</a></li>
+<li><a href="teacher-dashboard.html">Teacher Dashboard</a></li>
 <li><a href="student-dashboard.html">Student Dashboard</a></li>
 </ul>
 </li>
@@ -174,29 +174,28 @@
 <li><a href="edit-student.html">Student Edit</a></li>
 </ul>
 </li>
-<li class="submenu">
+<li class="submenu active">
 <a href="#"><i class="fas fa-chalkboard-teacher"></i> <span> Teachers</span> <span class="menu-arrow"></span></a>
 <ul>
-<li><a href="teachers.html">Teacher List</a></li>
-<li><a href="teacher-details.html">Teacher View</a></li>
-<li><a href="add-teacher.html">Teacher Add</a></li>
-<li><a href="edit-teacher.html">Teacher Edit</a></li>
+<li><a href="teachers.php" class="active">Teacher List</a></li>
+                           <li><a href="add-teacher.php">Teacher Add</a></li>
 </ul>
 </li>
-<li class="submenu active">
-<a href="#"><i class="fas fa-building"></i> <span> Classes</span> <span class="menu-arrow"></span></a>
+<li class="submenu">
+<a href="#"><i class="fas fa-building"></i> <span> Departments</span> <span class="menu-arrow"></span></a>
 <ul>
-<li><a href="departments.php" class="active">Class List</a></li>
-<li><a href="add-department.php" class="active">Class Add</a></li>
-<!-- <li><a href="edit-department.php">Department Edit</a></li> -->
+<li><a href="departments.html">Department List</a></li>
+<li><a href="add-department.html">Department Add</a></li>
+<li><a href="edit-department.html">Department Edit</a></li>
 </ul>
 </li>
 <li class="submenu">
 <a href="#"><i class="fas fa-book-reader"></i> <span> Subjects</span> <span class="menu-arrow"></span></a>
 <ul>
-<li><a href="subjects.html">Subject List</a></li>
-<li><a href="add-subject.html">Subject Add</a></li>
-<li><a href="edit-subject.html">Subject Edit</a></li>
+    <li><a href="subjects.php">Subject List</a></li>
+    <li><a href="add-subject.php">Subject Add</a></li>
+    
+</ul>ref="edit-subject.html">Subject Edit</a></li>
 </ul>
 </li>
 <li class="menu-title">
@@ -281,7 +280,7 @@
 <li><a href="tables-basic.html">Basic Tables </a></li>
 <li><a href="data-tables.html">Data Table </a></li>
 </ul>
-</li>
+ </li>
 <li class="submenu">
 <a href="javascript:void(0);"><i class="fas fa-code"></i> <span>Multi Level</span> <span class="menu-arrow"></span></a>
 <ul>
@@ -314,283 +313,73 @@
 <div class="content container-fluid">
 
 <div class="page-header">
-<div class="row">
-<div class="col-sm-12">
-<h3 class="page-title">Welcome Jonathan!</h3>
+<div class="row align-items-center">
+<div class="col">
+<h3 class="page-title">Teachers</h3>
 <ul class="breadcrumb">
 <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-<li class="breadcrumb-item active">Teacher Dashboard</li>
+<li class="breadcrumb-item active">Teachers</li>
 </ul>
 </div>
-</div>
-</div>
-
-
-<div class="row">
-<div class="col-xl-3 col-sm-6 col-12 d-flex">
-<div class="card bg-five w-100">
-<div class="card-body">
-<div class="db-widgets d-flex justify-content-between align-items-center">
-<div class="db-icon">
-<i class="fas fa-chalkboard"></i>
-</div>
-<div class="db-info">
-<h3>04/06</h3>
-<h6>Total Classes</h6>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="col-xl-3 col-sm-6 col-12 d-flex">
-<div class="card bg-six w-100">
-<div class="card-body">
-<div class="db-widgets d-flex justify-content-between align-items-center">
-<div class="db-icon">
-<i class="fas fa-user-graduate"></i>
-</div>
-<div class="db-info">
-<h3>40/60</h3>
-<h6>Total Students</h6>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="col-xl-3 col-sm-6 col-12 d-flex">
-<div class="card bg-seven w-100">
-<div class="card-body">
-<div class="db-widgets d-flex justify-content-between align-items-center">
-<div class="db-icon">
-<i class="fas fa-book-open"></i>
-</div>
-<div class="db-info">
-<h3>30/50</h3>
-<h6>Total Lessons</h6>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="col-xl-3 col-sm-6 col-12 d-flex">
-<div class="card bg-eight w-100">
-<div class="card-body">
-<div class="db-widgets d-flex justify-content-between align-items-center">
-<div class="db-icon">
-<i class="fas fa-clock"></i>
-</div>
-<div class="db-info">
-<h3>15/20</h3>
-<h6>Total Hours</h6>
-</div>
-</div>
-</div>
+<div class="col-auto text-right float-right ml-auto">
+<a href="#" class="btn btn-outline-primary mr-2"><i class="fas fa-download"></i> Download</a>
+<a href="add-teacher.php" class="btn btn-primary"><i class="fas fa-plus"></i></a>
 </div>
 </div>
 </div>
 
 
 <div class="row">
-<div class="col-12 col-lg-12 col-xl-9">
-<div class="row">
-<div class="col-12 col-lg-8 col-xl-8 d-flex">
-<div class="card flex-fill">
-<div class="card-header">
-<div class="row align-items-center">
-<div class="col-6">
-<h5 class="card-title">Upcoming Lesson</h5>
-</div>
-<div class="col-6">
-<span class="float-right view-link"><a href="#">View All Courses</a></span>
-</div>
-</div>
-</div>
-<div class="pt-3 pb-3">
-<div class="table-responsive lesson">
-<table class="table table-center">
+<div class="col-sm-12">
+<div class="card card-table">
+<div class="card-body">
+<div class="table-responsive">
+<table class="table table-hover table-center mb-0 datatable">
+<thead>
+<tr>
+<th>First Name</th>
+<th>Last Name</th>
+<th>Email</th>
+</tr>
+</thead>
 <tbody>
-<tr>
-<td>
-<div class="date">
-<b>Aug 4, Tuesday</b>
-<p>2.30pm - 3.30pm (60min)</p>
-</div>
-</td>
-<td>
-<div class="date">
-<b>Lessons 30</b>
-<p>3.1 Ipsuum dolor</p>
-</div>
-</td>
-<td><a href="#">Confirmed</a></td>
-<td><button type="submit" class="btn btn-info">Reschedule</button></td>
-</tr>
-<tr>
-<td>
-<div class="date">
-<b>Aug 5, Wednesday</b>
-<p>3.00pm - 4.30pm (90min)</p>
-</div>
-</td>
-<td>
-<div class="date">
-<b>Lessons 31</b>
-<p>3.2 Ipsuum dolor</p>
-</div>
-</td>
-<td><a href="#">Confirmed</a></td>
-<td><button type="submit" class="btn btn-info">Reschedule</button></td>
-</tr>
-<tr>
-<td>
-<div class="date">
-<b>Aug 6, Thursday</b>
-<p>11.00am - 12.00pm (20min)</p>
-</div>
-</td>
-<td>
-<div class="date">
-<b>Lessons 32</b>
-<p>3.3 Ipsuum dolor</p>
-</div>
-</td>
-<td><a href="#">Confirmed</a></td>
-<td><button type="submit" class="btn btn-info">Reschedule</button></td>
-</tr>
+<?php   
+               
+                  
+               require 'connexion.php';
+               $requete ="select * from Teacher";
+               $query=mysqli_query($db,$requete);
+               while($row=mysqli_fetch_assoc($query)){
+                  $id=$row['Teacher_Id'];
+
+                 echo "<th>".$row['Teacher_FirstName']."</th>";
+                 echo "<th>".$row['Teacher_LastName']."</th>";
+                 echo "<th>".$row['Teacher_Mail']."</th>";
+                 echo "<td class=\"text-right\">
+                 <div class=\"actions\">
+                 <a href=\"add-teacher.php?id=$id\" class=\"btn btn-sm bg-success-light mr-2\">
+                         <i class=\"fas fa-pen\"></i>
+                     </a> </div> </td>";
+                 echo "<th><a href='delete-teacher.php?id= ".$id." '>delete </a>";
+               
+      
+                 echo "</tr>";
+               }
+               
+            
+            ?>
+                                   
 </tbody>
 </table>
 </div>
 </div>
 </div>
 </div>
-<div class="col-12 col-lg-4 col-xl-4 d-flex">
-<div class="card flex-fill">
-<div class="card-header">
-<div class="row align-items-center">
-<div class="col-12">
-<h5 class="card-title">Semester Progress</h5>
 </div>
-</div>
-</div>
-<div class="dash-widget">
-<div class="circle-bar circle-bar1">
-<div class="circle-graph1" data-percent="50">
-<b>50%</b>
-</div>
-</div>
-<div class="dash-info">
-<h6>Lesson Progressed</h6>
-<h4>30 <span>/ 60</span></h4>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="row">
-<div class="col-12 col-lg-6 col-xl-8 d-flex">
-<div class="card flex-fill">
-<div class="card-header">
-<div class="row align-items-center">
-<div class="col-6">
-<h5 class="card-title">Teaching Activity</h5>
-</div>
-<div class="col-6">
-<ul class="list-inline-group text-right mb-0 pl-0">
-<li class="list-inline-item">
-<div class="form-group mb-0 amount-spent-select">
-<select class="form-control form-control-sm">
-<option>Weekly</option>
-<option>Monthly</option>
-<option>Yearly</option>
-</select>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="card-body">
-<div id="apexcharts-area"></div>
-</div>
-</div>
-</div>
-<div class="col-12 col-lg-6 col-xl-4 d-flex">
-<div class="card flex-fill">
-<div class="card-header">
- <h5 class="card-title">Teaching History</h5>
-</div>
-<div class="card-body">
-<div class="teaching-card">
-<ul class="activity-feed">
-<li class="feed-item">
-<div class="feed-date1">Sep 05, 9 am - 10 am (60min)</div>
-<span class="feed-text1"><a>Lorem ipsum dolor</a></span>
-<p><span>In Progress</span></p>
-</li>
-<li class="feed-item">
-<div class="feed-date1">Sep 04, 2 pm - 3 pm (70min)</div>
-<span class="feed-text1"><a>Et dolore magna</a></span>
-<p>Completed</p>
-</li>
-<li class="feed-item">
-<div class="feed-date1">Sep 02, 1 pm - 2 am (80min)</div>
-<span class="feed-text1"><a>Exercitation ullamco</a></span>
-<p>Completed</p>
-</li>
-<li class="feed-item">
-<div class="feed-date1">Aug 30, 10 am - 12 pm (90min)</div>
-<span class="feed-text1"><a>Occaecat cupidatat</a></span>
-<p>Completed</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="col-12 col-lg-12 col-xl-3 d-flex">
-<div class="card flex-fill">
-<div class="card-header">
-<div class="row align-items-center">
-<div class="col-12">
-<h5 class="card-title">Calendar</h5>
-</div>
-</div>
-</div>
-<div class="card-body">
-<div id="calendar-doctor" class="calendar-container"></div>
-<div class="calendar-info calendar-info1">
-<div class="calendar-details">
-<p>09 am</p>
-<h6 class="calendar-blue d-flex justify-content-between align-items-center">Fermentum <span>09am - 10pm</span></h6>
-</div>
-<div class="calendar-details">
-<p>10 am</p>
-<h6 class="calendar-violet d-flex justify-content-between align-items-center">Pharetra et <span>10am - 11am</span></h6>
-</div>
-<div class="calendar-details">
-<p>11 am</p>
-<h6 class="calendar-red d-flex justify-content-between align-items-center">Break <span>11am - 11.30am</span></h6>
-</div>
-<div class="calendar-details">
-<p>12 pm</p>
-<h6 class="calendar-orange d-flex justify-content-between align-items-center">Massa <span>11.30am - 12.00pm</span></h6>
-</div>
-<div class="calendar-details">
-<p>09 am</p>
-<h6 class="calendar-blue d-flex justify-content-between align-items-center">Fermentum <span>09am - 10pm</span></h6>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-
 </div>
 
 <footer>
-<p>Copyright © 2020 Dreamguys.</p>
+<p>Copyright © 2023</p>
 </footer>
 
 </div>
@@ -605,16 +394,10 @@
 
 <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
-<script src="assets/plugins/apexchart/apexcharts.min.js"></script>
-<script src="assets/plugins/apexchart/chart-data.js"></script>
-
-<script src="assets/plugins/simple-calendar/jquery.simple-calendar.js"></script>
-<script src="assets/js/calander.js"></script>
-
-<script src="assets/js/circle-progress.min.js"></script>
+<script src="assets/plugins/datatables/datatables.min.js"></script>
 
 <script src="assets/js/script.js"></script>
 </body>
 
-<!-- Mirrored from preschool.dreamguystech.com/html-template/teacher-dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 28 Oct 2021 11:11:43 GMT -->
+<!-- Mirrored from preschool.dreamguystech.com/html-template/teachers.php by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 28 Oct 2021 11:11:50 GMT -->
 </html>
