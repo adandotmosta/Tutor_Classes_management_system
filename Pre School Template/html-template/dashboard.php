@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<!-- Mirrored from preschool.dreamguystech.com/html-template/form-basic-inputs.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 28 Oct 2021 11:12:01 GMT -->
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-<title>Preskool - Basic Inputs</title>
+<title>Preskool - Dashboard</title>
 
 <link rel="shortcut icon" href="assets/img/favicon.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,600;0,700;1,400&amp;display=swap">
@@ -15,10 +13,36 @@
 <link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
 <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
 
+<link rel="stylesheet" href="assets/plugins/simple-calendar/simple-calendar.css">
+
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+<?php
+        $Id = $_GET['Student_Id'];
+         session_start();
+         include "connect.php";
+         $sql = "SELECT Student_FirstName FROM student WHERE Student_Id=$Id";
+         $result = $db->query($sql);
 
+        if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $name = $row["Student_FirstName"];
+        } else {
+        $name = "User";
+        }
+      
+        // Retrieve courses info from database
+        $sql = "SELECT study.course_name, class.Class_Id, study.Student_Absence FROM study JOIN class ON study.Course_Id = class.Course_Id WHERE class.Student_Id = $Id ORDER BY study.Student_Starting_Date DESC";
+        $result_course = $conn->query($sql);
+        // Retrieve fees info
+        $sql = "SELECT Fees_Amount, Fees_Status FROM fees WHERE Student_Id = '$Id'";
+        $result_fees = $conn->query($sql);
+        // Retrieve assignments info
+        $sql = "SELECT Resource_Text, Resource_DueTime FROM resources WHERE Student_Id = '$Id' ORDER BY duedate DESC LIMIT 3";
+        $result_assignments = $conn->query($sql);
+
+?>
 <div class="main-wrapper">
 
 <div class="header">
@@ -155,12 +179,12 @@
 <li class="menu-title">
 <span>Main Menu</span>
 </li>
-<li class="submenu">
+<li class="submenu active">
 <a href="#"><i class="fas fa-user-graduate"></i> <span> Dashboard</span> <span class="menu-arrow"></span></a>
 <ul>
 <li><a href="index.html">Admin Dashboard</a></li>
 <li><a href="teacher-dashboard.html">Teacher Dashboard</a></li>
-<li><a href="student-dashboard.html">Student Dashboard</a></li>
+<li><a href="student-dashboard.html" class="active">Student Dashboard</a></li>
 </ul>
 </li>
 <li class="submenu">
@@ -212,22 +236,22 @@
 </ul>
 </li>
 <li>
-<a href="index.html"><i class="fas fa-holly-berry"></i> <span>Holiday</span></a>
+<a href="holiday.html"><i class="fas fa-holly-berry"></i> <span>Holiday</span></a>
 </li>
 <li>
-<a href="index.html"><i class="fas fa-comment-dollar"></i> <span>Fees</span></a>
+<a href="fees.html"><i class="fas fa-comment-dollar"></i> <span>Fees</span></a>
 </li>
 <li>
-<a href="index.html"><i class="fas fa-clipboard-list"></i> <span>Exam list</span></a>
+<a href="exam.html"><i class="fas fa-clipboard-list"></i> <span>Exam list</span></a>
 </li>
 <li>
-<a href="index.html"><i class="fas fa-calendar-day"></i> <span>Events</span></a>
+<a href="event.html"><i class="fas fa-calendar-day"></i> <span>Events</span></a>
 </li>
 <li>
-<a href="index.html"><i class="fas fa-table"></i> <span>Time Table</span></a>
+<a href="time-table.html"><i class="fas fa-table"></i> <span>Time Table</span></a>
 </li>
 <li>
-<a href="index.html"><i class="fas fa-book"></i> <span>Library</span></a>
+<a href="library.html"><i class="fas fa-book"></i> <span>Library</span></a>
 </li>
 <li class="menu-title">
 <span>Pages</span>
@@ -262,10 +286,10 @@
 <li>
 <a href="components.html"><i class="fas fa-vector-square"></i> <span>Components</span></a>
 </li>
-<li class="submenu active">
+<li class="submenu">
 <a href="#"><i class="fas fa-columns"></i> <span> Forms </span> <span class="menu-arrow"></span></a>
 <ul>
-<li><a href="form-basic-inputs.html" class="active">Basic Inputs </a></li>
+<li><a href="form-basic-inputs.html">Basic Inputs </a></li>
 <li><a href="form-input-groups.html">Input Groups </a></li>
 <li><a href="form-horizontal.html">Horizontal Form </a></li>
 <li><a href="form-vertical.html"> Vertical Form </a></li>
@@ -313,169 +337,76 @@
 
 <div class="page-header">
 <div class="row">
-<div class="col">
-<h3 class="page-title">Basic Inputs</h3>
+<div class="col-sm-12">
+<h3 class="page-title">Welcome to Your Dashboard, <?php echo $name; ?>!</h3>
 <ul class="breadcrumb">
 <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-<li class="breadcrumb-item active">Basic Inputs</li>
+<li class="breadcrumb-item active">Student Dashboard</li>
 </ul>
 </div>
 </div>
 </div>
 
-<div class="row">
-<div class="col-lg-12">
-<div class="card">
-<div class="card-header">
-<h5 class="card-title">Basic Inputs</h5>
-</div>
-<div class="card-body">
-<form action="#">
-<div class="form-group row">
-<label class="col-form-label col-md-2">Text Input</label>
-<div class="col-md-10">
-<input type="text" class="form-control">
-</div>
-</div>
-<div class="form-group row">
-<label class="col-form-label col-md-2">Password</label>
-<div class="col-md-10">
-<input type="password" class="form-control">
-</div>
-</div>
-<div class="form-group row">
-<label class="col-form-label col-md-2">Disabled Input</label>
-<div class="col-md-10">
-<input type="text" class="form-control" disabled="disabled">
-</div>
-</div>
-<div class="form-group row">
-<label class="col-form-label col-md-2">Readonly Input</label>
-<div class="col-md-10">
-<input type="text" class="form-control" value="readonly" readonly="readonly">
-</div>
-</div>
-<div class="form-group row">
-<label class="col-form-label col-md-2">Placeholder</label>
-<div class="col-md-10">
-<input type="text" class="form-control" placeholder="Placeholder">
-</div>
-</div>
-<div class="form-group row">
-<label class="col-form-label col-md-2">File Input</label>
-<div class="col-md-10">
-<input class="form-control" type="file">
-</div>
-</div>
-<div class="form-group row">
-<label class="col-form-label col-md-2">Default Select</label>
-<div class="col-md-10">
-<select class="form-control">
-<option>-- Select --</option>
-<option>Option 1</option>
-<option>Option 2</option>
-<option>Option 3</option>
-<option>Option 4</option>
-<option>Option 5</option>
-</select>
-</div>
-</div>
-<div class="form-group row">
-<label class="col-form-label col-md-2">Radio</label>
-<div class="col-md-10">
-<div class="radio">
-<label>
-<input type="radio" name="radio"> Option 1
-</label>
-</div>
-<div class="radio">
- <label>
-<input type="radio" name="radio"> Option 2
-</label>
-</div>
-<div class="radio">
-<label>
-<input type="radio" name="radio"> Option 3
-</label>
-</div>
-</div>
-</div>
-<div class="form-group row">
-<label class="col-form-label col-md-2">Checkbox</label>
-<div class="col-md-10">
-<div class="checkbox">
-<label>
-<input type="checkbox" name="checkbox"> Option 1
-</label>
-</div>
-<div class="checkbox">
-<label>
-<input type="checkbox" name="checkbox"> Option 2
-</label>
-</div>
-<div class="checkbox">
-<label>
-<input type="checkbox" name="checkbox"> Option 3
-</label>
-</div>
-</div>
-</div>
-<div class="form-group row">
-<label class="col-form-label col-md-2">Textarea</label>
-<div class="col-md-10">
-<textarea rows="5" cols="5" class="form-control" placeholder="Enter text here"></textarea>
-</div>
-</div>
-<div class="form-group mb-0 row">
-<label class="col-form-label col-md-2">Input Addons</label>
-<div class="col-md-10">
-<div class="input-group">
-<div class="input-group-prepend">
-<span class="input-group-text">$</span>
-</div>
-<input class="form-control" type="text">
-<div class="input-group-append">
-<button class="btn btn-primary" type="button">Button</button>
-</div>
-</div>
-</div>
-</div>
-</form>
-</div>
-</div>
-<div class="card">
-<div class="card-header">
-<h5 class="card-title">Input Sizes</h5>
-</div>
-<div class="card-body">
-<form action="#">
-<div class="form-group row">
-<label class="col-form-label col-md-2">Large Input</label>
-<div class="col-md-10">
-<input type="text" class="form-control form-control-lg" placeholder=".form-control-lg">
-</div>
-</div>
-<div class="form-group row">
-<label class="col-form-label col-md-2">Default Input</label>
-<div class="col-md-10">
-<input type="text" class="form-control" placeholder=".form-control">
-</div>
-</div>
-<div class="form-group mb-0 row">
-<label class="col-form-label col-md-2">Small Input</label>
-<div class="col-md-10">
-<input type="text" class="form-control form-control-sm" placeholder=".form-control-sm">
-</div>
-</div>
-</form>
-</div>
-</div>
-</div>
-</div>
-</div>
 
+<div class="row">
+<div class="container mt-4">
+<h2>Courses</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Course Name</th>
+          <th>Class ID</th>
+          <th>Absences</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php while($row = $result_course->fetch_assoc()): ?>
+        <tr>
+          <td><?php echo $row["Course_Name"]; ?></td>
+          <td><?php echo $row["Class_Id"]; ?></td>
+          <td><?php echo $row["Student_Absence"]; ?></td>
+        </tr>
+        <?php endwhile; ?>
+      </tbody>
+    </table>
+
+    <h2>Fees</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Amount</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php while($row = $result_fees->fetch_assoc()): ?>
+        <tr>
+          <td><?php echo $row["Fees_Amount"]; ?></td>
+          <td><?php echo $row["Fees_Status"]; ?></td>
+        </tr>
+        <?php endwhile; ?>
+      </tbody>
+    </table>
+    <h2>Assignments</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Due Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php while($row = $result_assignments->fetch_assoc()): ?>
+        <tr>
+          <td><?php echo $row["Resource_Text"]; ?></td>
+          <td><?php echo $row["Resource_DueTime"]; ?></td>
+        </tr>
+        <?php endwhile; ?>
+      </tbody>
+    </table>
+    </div>
 <footer>
-<p>Copyright © 2020 Dreamguys.</p>
+<p>LBENDIII .</p>
 </footer>
 
 </div>
@@ -490,8 +421,15 @@
 
 <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
+<script src="assets/plugins/apexchart/apexcharts.min.js"></script>
+<script src="assets/plugins/apexchart/chart-data.js"></script>
+
+<script src="assets/plugins/simple-calendar/jquery.simple-calendar.js"></script>
+<script src="assets/js/calander.js"></script>
+
+<script src="assets/js/circle-progress.min.js"></script>
+
 <script src="assets/js/script.js"></script>
 </body>
 
-<!-- Mirrored from preschool.dreamguystech.com/html-template/form-basic-inputs.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 28 Oct 2021 11:12:01 GMT -->
 </html>
