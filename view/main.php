@@ -35,6 +35,11 @@ echo($studentscount[0]['total_instances'])  ?></h3>
                         </div>
                      </div>
                   </div>
+
+
+
+
+                  
                   <div class="col-xl-3 col-sm-6 col-12 d-flex">
                      <div class="card bg-two w-100">
                         <div class="card-body">
@@ -44,7 +49,7 @@ echo($studentscount[0]['total_instances'])  ?></h3>
                               </div>
                               <div class="db-info">
                                  <h3>
-                                    <?
+                                    <?php
 
 echo ($teacherscount[0]['total_instances']) ;
 
@@ -59,6 +64,9 @@ echo ($teacherscount[0]['total_instances']) ;
                         </div>
                      </div>
                   </div>
+
+
+
                   <div class="col-xl-3 col-sm-6 col-12 d-flex">
                      <div class="card bg-three w-100">
                         <div class="card-body">

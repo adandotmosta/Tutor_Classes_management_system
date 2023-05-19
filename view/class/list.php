@@ -13,7 +13,7 @@
 </div>
 <div class="col-auto text-right float-right ml-auto">
 <a href="#" class="btn btn-outline-primary mr-2"><i class="fas fa-download"></i> Download</a>
-<a href="add-department.php" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+<a href="index.php?action=addclass" class="btn btn-primary"><i class="fas fa-plus"></i></a>
 </div>
 </div>
 </div>
@@ -56,18 +56,18 @@
                <a href="index.php?action=updateclass&id=<?php echo $classes[$i]["Class_Id"]; ?>" class="btn btn-sm bg-success-light mr-2">
                   <i class="fas fa-pen"></i>
                </a>
-               <a href="index.php?action=deleteclass&id=<?php echo $classes[$i]["Class_Id"]; ?>" class="btn btn-sm bg-danger-light">
+               <a href="index.php?action=deleteclass&id=<?php echo $classes[$i]["Class_Id"]; ?>" class="btn btn-sm bg-danger-light mr-2">
                   <i class="fas fa-trash"></i>
                </a>
-               <a href="index.php?action=addstudenttoclass&id=<?php echo $classes[$i]["Class_Id"]; ?>" class="btn btn-secondary">
-               <i class="fa-light fa-user-plus"></i>
-               </a>
-               <a href="index.php?action=showclassstudents&id=<?php echo $classes[$i]["Class_Id"]; ?>" class="btn btn-sm bg-danger-light">
-                  <i class="fas fa-trash"></i>
-               </a>
-               <a href="index.php?action=deleteclass&id=<?php echo $classes[$i]["Class_Id"]; ?>" class="btn btn-sm bg-danger-light">
-                  <i class="fas fa-trash"></i>
-               </a>
+               <a href="index.php?action=addstudenttoclass&id=<?php echo $classes[$i]["Class_Id"]; ?>" class="btn btn-sm bg-primary-light mr-2">
+         <i class="fas fa-user-plus"></i>
+      </a>
+                <a href="index.php?action=showclassstudents&id=<?php echo $classes[$i]["Class_Id"]; ?>" class="btn btn-sm bg-info-light mr-2">
+         <i class="fas fa-list"></i>
+      </a>
+      <a href="index.php?action=addsession&id=<?php echo $classes[$i]["Class_Id"]; ?>" class="btn btn-sm bg-warning-light mr-2">
+         <i class="fas fa-calendar-alt"></i>
+      </a>
             </div>
          </td>
          
