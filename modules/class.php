@@ -30,6 +30,30 @@ switch($vars['action']){
         exit;
     }break;
 
+    case "updateclass":{
+        $classtoedit = $db->query('SELECT * FROM class WHERE Class_Id=?', $_GET["id"])->fetchArray();
+        include("view/header.php");
+        include("view/sidebar.php");
+        include("view/class/edit.php");  
+        include("view/footer.php"); 
+
+        exit;
+    }break;
+
+    case "doupdateclass":{
+        $className = $_POST["className"];
+        $idclass = $_POST['id'];
+        $price = $_POST["Price"];
+        $start = $_POST["startDate"];
+        $end =  $_POST["endDate"];
+        $numsessions = $_POST["numSessions"];
+        $capacity =  $_POST["Capacity"];
+        $rq = $db->query('UPDATE class SET class_name = ?, Class_Price = ? ,Starting_Date = ?, Finishing_Date = ?, Class_Capacity = ?, Number_Of_Sections = ? WHERE Class_Id = ?',$className,$price,$start,$end ,$capacity,$numsessions ,$idclass);
+        header("location: index.php?action=classlist");   
+
+        exit;
+    }break;
+
     case "doaddclass":{
         
         $className = $_POST["className"];
