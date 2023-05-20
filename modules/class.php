@@ -71,7 +71,21 @@ switch($vars['action']){
     }break;
 
     case "addstudenttoclass":{
-        $students = $db->query('SELECT * FROM student WHERE Supervisor_Id IN (SELECT Supervisor_Id FROM supervisor WHERE School_Id=?);', $_COOKIE["school_id"])->fetchAll();
+        $students = $db->query('
+    SELECT *
+    FROM student AS std
+    WHERE Supervisor_Id IN (
+        SELECT Supervisor_Id
+        FROM supervisor
+        WHERE School_Id = ?
+        AND Student_Id NOT IN (
+            SELECT Student_Id
+            FROM study
+            WHERE Student_Id = std.Student_Id
+            AND Class_Id = ?
+        )
+    )
+', [$_COOKIE["school_id"], $_GET['id']])->fetchAll();
         include("view/header.php");
         include("view/sidebar.php");
         include("view/class/addstudenttoclass.php");  
