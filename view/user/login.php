@@ -2,7 +2,7 @@
         <div class="container">
             <div class="signin-content">
                 <div class="signin-image">
-                    <figure><img src="assets/img/signin-image.jpg" alt="sing up image"></figure>
+                    <figure><img src="assets/img/logo.png" alt="sing up image"></figure>
                     <a href="index.php?action=signup" class="signup-image-link">Create an account</a>
                 </div>
 
