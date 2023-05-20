@@ -1,6 +1,6 @@
 <?php
 
-define('LANG_APP_NAME','A+ School');
+define('LANG_APP_NAME','DzTutor');
 define('LANG_ADD_ITEM','Add Item');
 define('LANG_SIGNUP','Signup');
 define('LANG_YOUR_NAME','Your name');
