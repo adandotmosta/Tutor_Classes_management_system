@@ -197,9 +197,14 @@ body {
   font-size: 13px;
   line-height: 1.8;
   color: #222;
-  background: #f8f8f8;
+  
   font-weight: 400;
-  font-family: Poppins; }
+  font-family: Poppins;
+  background-image: url("../img/login.jpg");
+  background-size: cover;
+  background-position: center;
+ }
+
 
 .container {
   width: 900px;

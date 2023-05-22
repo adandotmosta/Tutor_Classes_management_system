@@ -3,7 +3,7 @@
 switch($vars['action']){
 
     case "classlist":{
-        $classes = $db->query('SELECT * FROM class AS class JOIN teacher ON class.Teacher_Id = teacher.Teacher_Id JOIN module ON class.Module_Id = module.Module_Id' )->fetchAll();
+        $classes = $db->query('SELECT * FROM class AS class JOIN teacher ON class.Teacher_Id = teacher.Teacher_Id JOIN module ON class.Module_Id = module.Module_Id  WHERE class.School_Id=?', $_COOKIE["school_id"] )->fetchAll();
         
         include("view/header.php");
         include("view/sidebar.php");

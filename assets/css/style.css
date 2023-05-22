@@ -78,7 +78,7 @@ input:-webkit-autofill:focus {
     height: 40px;
 }
 .form-control:focus {
-	border-color: #FFBC53;
+	border-color: #1d9bea;
 	box-shadow: none;
 	outline: 0 none;
 }
@@ -806,12 +806,12 @@ button.bg-danger:hover {
 .pagination > .active > span,
 .pagination > .active > span:focus,
 .pagination > .active > span:hover {
-	background-color: #FFBC53;
-	border-color: #FFBC53;
+	background-color: #028ee1;
+	border-color: #028ee1;
 }
 .pagination > li > a, 
 .pagination > li > span {
-	color: #FFBC53;
+	color: #009ce7;
 }
 .page-link:hover {
 	color: #FFBC53;

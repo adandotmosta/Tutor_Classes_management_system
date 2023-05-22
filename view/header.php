@@ -12,6 +12,7 @@
       <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
       <link rel="stylesheet" href="assets/plugins/datatables/datatables.min.css">
       <link rel="stylesheet" href="assets/css/style.css">
+      
 </head>
 <body>
 <div class="main-wrapper">
