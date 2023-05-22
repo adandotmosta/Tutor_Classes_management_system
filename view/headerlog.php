@@ -7,7 +7,7 @@
     <title><?php echo LANG_APP_NAME ?></title>
      <!-- Font Icon -->
      <link rel="stylesheet" href="assets/fonts/material-icon/css/material-design-iconic-font.min.css"> 
-
+     <link rel="shortcut icon" href="assets/img/favicon.png">
      <!-- Main css -->
      <link rel="stylesheet" href="assets/css/stylelog.css">
      <style>
