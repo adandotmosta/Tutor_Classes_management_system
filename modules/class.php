@@ -86,6 +86,7 @@ switch($vars['action']){
         )
     )
 ', [$_COOKIE["school_id"], $_GET['id']])->fetchAll();
+        
         include("view/header.php");
         include("view/sidebar.php");
         include("view/class/addstudenttoclass.php");  

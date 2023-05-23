@@ -59,10 +59,10 @@
                <a href="index.php?action=deleteclass&id=<?php echo $classes[$i]["Class_Id"]; ?>" class="btn btn-sm bg-danger-light mr-2">
                   <i class="fas fa-trash"></i>
                </a>
-               <a href="index.php?action=addstudenttoclass&id=<?php echo $classes[$i]["Class_Id"]; ?>" class="btn btn-sm bg-primary-light mr-2">
+               <a href="index.php?action=addstudenttoclass&classname=<?php echo $classes[$i]["class_name"]; ?>&id=<?php echo $classes[$i]["Class_Id"]; ?>" class="btn btn-sm bg-primary-light mr-2">
          <i class="fas fa-user-plus"></i>
       </a>
-                <a href="index.php?action=showclassstudents&id=<?php echo $classes[$i]["Class_Id"]; ?>" class="btn btn-sm bg-info-light mr-2">
+                <a href="index.php?action=showclassstudents&classname=<?php echo $classes[$i]["class_name"]; ?>&id=<?php echo $classes[$i]["Class_Id"]; ?>" class="btn btn-sm bg-info-light mr-2">
          <i class="fas fa-list"></i>
       </a>
       <a href="index.php?action=addsession&id=<?php echo $classes[$i]["Class_Id"]; ?>" class="btn btn-sm bg-warning-light mr-2">

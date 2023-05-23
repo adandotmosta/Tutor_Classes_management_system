@@ -72,6 +72,10 @@ function user_process_signup($vars){
         $ret['error']="The password should be filled.";
         return $ret;
     }
+	if (strlen($ret['error'])==0 and strlen($vars['pass'])<8) {
+        $ret['error']="The password should be at least 8 characters";
+        return $ret;
+    }
 
     if (strlen($ret['error'])>0)return  $ret;
     //search for it in the database ?

@@ -13,41 +13,22 @@
                      </li>
                      <li class="">
                         <a href="index.php?action=studentlist"><i class="fas fa-user-graduate"></i> <span> Students</span> <span class="menu-arrow"></span></a>
-                        <!-- <ul>
-                           <li><a href="index.php?action=studentlist">Student List</a></li> -->
-                          
-                           <!-- <a href="#"><i class="fas fa-user-graduate"></i> <span> Add Student / Supervisor</span> <span class="menu-arrow"></span></a> -->
-                           <!-- <ul>
-                           <li><a href="index.php?action=">Supervisor</a></li>
-                           <li><a href="index.php?action=">Student</a></li>
-
-                           </ul>
-                    
-                        </ul> -->
+                      
                      </li>
                      <li class="">
                         <a href="index.php?action=listteacher"><i class="fas fa-chalkboard-teacher"></i> <span> Teachers</span> <span class="menu-arrow"></span></a>
-                        <!-- <ul>
-                           <li><a href="index.php?action=listteacher">Teacher List</a></li>
-                           <!-- <li><a href="add-teacher.php">Teacher Add</a></li> -->
-                        <!-- </ul> --> 
+                       
                      </li>
                    
 <li class="">
 <a href="index.php?action=classlist"><i class="fas fa-building"></i> <span> Classes</span> <span class="menu-arrow"></span></a>
 <ul>
 <li><a href="index.php?action=classlist">Class List</a></li>
-<!-- <li><a href="add-department.php" >Class Add</a></li> -->
-
 </ul>
 </li>
                      <li class="">
                         <a href="index.php?action=subjectlist"><i class="fas fa-book-reader"></i> <span> Subjects</span> <span class="menu-arrow"></span></a>
-                        <!-- <ul>
-                           <li><a href="index.php?action=subjectlist">Subject List</a></li>
-                           <!-- <li><a href="add-subject.php">Subject Add</a></li> -->
-                        <!-- </ul>
-                     </li> --> 
+                     
 
 
                      <li>
@@ -70,3 +51,4 @@
                </div>
             </div>
          </div>
+         

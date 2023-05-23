@@ -5,7 +5,7 @@
 <div class="page-header">
 <div class="row align-items-center">
 <div class="col">
-<h3 class="page-title">Add Student to class</h3>
+<h3 class="page-title" >Add Student to class :<span style="color: green;"> <?php echo $_GET["classname"]; ?></span></h3>
 <ul class="breadcrumb">
 <li class="breadcrumb-item"><a href="departments.html"></a></li>
 <li class="breadcrumb-item active"></li>
