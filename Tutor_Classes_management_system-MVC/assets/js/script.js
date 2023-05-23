@@ -274,20 +274,3 @@
 	
 })(jQuery);
 
-function clickedradio(radio){
-
-
-    const str = radio.value;
-    const [boolVar, numVar, strVar] = str.split("#");
-  $.ajax({
-            type: 'post',
-            data: {stat: boolVar,id_s: numVar,id_c: strVar},
-            success: function(response){
-                console.log("Absenteism :",boolVar);
-                console.log("id_s : ",numVar);
-                console.log("id_c: ",strVar);
-              
-               
-            }
-         });
-}

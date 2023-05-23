@@ -1,3 +1,66 @@
+<script>
+
+document.addEventListener('DOMContentLoaded', function() {
+  var calendarEl = document.getElementById('calendar');
+  var calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: 'dayGridMonth',
+    dayCellDidMount: function(cell) {
+      cell.el.style.width = '100px'; // set the cell width
+      cell.el.style.height = '100px'; // set the cell height
+    },
+
+    events: [
+           <?php  for($i = 0; $i < count($abs); $i++){ 
+            $c_id = $abs[$i]['Class_Id'];
+            $class_name  = $db->query($db,"SELECT class_name from class where Class_Id=$c_id;")->fetchArray();
+            $class_name = $class_name['class_name'];
+            ?> {
+              title: '<?php echo "".$class_name." Status : "; if($row['absent']==1) echo "absent"; else echo "present"; ?>',
+
+              start: '<?php 
+ echo "{$row['formatted_date']}";
+ ?>'
+            },<?php } ?>],
+
+
+            dateClick: function(info) {
+      // get the clicked date and cell information
+      var dateStr = info.dateStr;
+      var dayEl = info.dayEl;
+      var cellTitle = dayEl.getAttribute('title');
+      
+      // create a Bootstrap modal
+      var modal = document.createElement('div');
+      modal.classList.add('modal', 'fade');
+      modal.innerHTML = `
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">`+cellTitle+` wiii</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>This is the cell title:</p>
+              <p>${cellTitle}wiii</p>
+            </div>
+          </div>
+        </div>
+      `;
+      
+      // add the modal to the page and show it
+      document.body.appendChild(modal);
+      $(modal).modal('show');
+    },
+
+
+
+  });
+  calendar.render();
+});
+
+</script>
 <div class="page-wrapper">
     <div class="content container-fluid">
         <div class="page-header">
