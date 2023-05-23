@@ -5,7 +5,7 @@
 <div class="page-header">
 <div class="row">
 <div class="col">
-<h3 class="page-title">Class Student List</h3>
+<h3 class="page-title">Class : <span style="color: green;"> <?php echo $_GET["classname"]; ?></span></h3>
 <ul class="breadcrumb">
 <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
 <li class="breadcrumb-item active">Class Student List</li>
