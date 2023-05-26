@@ -5,7 +5,7 @@ function user_get_logged_user(){
     
     $appuser=0;
     if (isset($_COOKIE['app_email']) and isset($_COOKIE['schoolname']) and isset($_COOKIE['school_id'])  and strlen($_COOKIE['app_email'])>0){		
-		$items = $db->query("SELECT * FROM School WHERE (School_Mail) = ? and Password_Manager= ?",$_COOKIE['app_email'], $_COOKIE['app_pass'])->fetchAll();
+		$items = $db->query("SELECT * FROM school WHERE (School_Mail) = ? and Password_Manager= ?",$_COOKIE['app_email'], $_COOKIE['app_pass'])->fetchAll();
 		if (count($items)>0){
 			$appuser=$items[0];	
 		}
@@ -35,7 +35,7 @@ function user_process_login($vars){
     if (strlen($ret['error'])>0)return  $ret;
     
     //search for it in the database ?
-	$items = $db->query("SELECT * FROM School WHERE (School_Mail) = ? and Password_Manager= ?",$vars['email'], md5($vars['pass']))->fetchAll();
+	$items = $db->query("SELECT * FROM school WHERE (School_Mail) = ? and Password_Manager= ?",$vars['email'], md5($vars['pass']))->fetchAll();
 	if (count($items)==0){
 	        $ret['error']=LANG_INCORRECT_EMAIL_PASSWORD;
 	        return $ret;
@@ -79,7 +79,7 @@ function user_process_signup($vars){
 
     if (strlen($ret['error'])>0)return  $ret;
     //search for it in the database ?
-	$items = $db->query("SELECT * FROM School WHERE (School_Mail) = ?",$vars['email'])->fetchAll();
+	$items = $db->query("SELECT * FROM school WHERE (School_Mail) = ?",$vars['email'])->fetchAll();
 	if (count($items)>0){
 	        $ret['error']="There is already an account with this email address";
 	        return $ret;
@@ -89,7 +89,7 @@ function user_process_signup($vars){
 	}
 	else {$c=0;}
 	//Else, there is no users in the db with the same email
-    $db->query("INSERT INTO School (School_Name, School_Mail,Owner_FirstName ,Owner_LastName, Password_Manager ,School_Address , Session_System) VALUES ( ?, ?, ? ,?,?,?,?)", $vars['name'], $vars['email'],$vars['ownerFName'],$vars['ownerLName'], md5($vars['pass']) ,$vars['location'],$c);
+    $db->query("INSERT INTO school (School_Name, School_Mail,Owner_FirstName ,Owner_LastName, Password_Manager ,School_Address , Session_System) VALUES ( ?, ?, ? ,?,?,?,?)", $vars['name'], $vars['email'],$vars['ownerFName'],$vars['ownerLName'], md5($vars['pass']) ,$vars['location'],$c);
 				
 	//log the user directly by setting their cookies..
 	setcookie("app_email", $vars['email'], time()+(3600*24),"/");
