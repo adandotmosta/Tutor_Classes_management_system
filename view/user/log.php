@@ -1,50 +1,72 @@
-<?php 
+<!DOCTYPE html>
+<html lang="en">
+   <!-- Mirrored from preschool.dreamguystech.com/html-template/login.php by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 28 Oct 2021 11:11:39 GMT -->
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+      <title>Preskool - Login</title>
+      <link rel="shortcut icon" href="StudentPages/assets/img/favicon.png">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,600;0,700;1,400&amp;display=swap">
+      <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+      <link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
+      <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
+      <link rel="stylesheet" href="assets/css/style.css">
+   </head>
+   <body>
+      <div class="main-wrapper login-body">
+         <div class="login-wrapper">
+            <div class="container">
+               <div class="loginbox">
+                  <div class="login-left">
+                     <img class="img-fluid" src="assets/img/logo-white.png" alt="Logo">
+                  </div>
+                  <div class="login-right">
+                     <div class="login-right-wrap">
+                        <h1>Login</h1>
+                        <p class="account-subtitle">Supervisor access side</p>
+                        <form action="index.php" method="POST" >
+                        <input type="hidden" name="action" value="do_login" >
+                        <?php
+               if(isset($_GET["error"])){ 
+                echo 1;
+               ?>
+               <p class="error" ><?php echo $_GET["error"] ; ?></p>
+               <?php } ?>
+                           <div class="form-group">
+                              <input class="form-control" type="text" placeholder="Email" name="email" required>
+                           </div>
+                           <div class="form-group">
+                              <input class="form-control" type="password" placeholder="Password" name="password" required>
+                           </div>
+                           <div class="form-group">
+                              <input class="btn btn-primary btn-block" type="submit" name="Login">
+                           </div>
+                        </form>
 
-include "connexion.php";
+                       
+                     </div>
+                  </div>
+               </div>
 
-function validate($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
-
-if (isset($_POST["email"]) && isset($_POST["password"])) {
-    $Supervisor_Mail = validate($_POST["email"]);
-    $Password_User = validate($_POST["password"]);
-
-    if (empty($Supervisor_Mail)) {
-        header("Location: index.php?error=email is required");
-        exit();
-    } else if (empty($Password_User)) {
-        header("Location: index.php?error=password is required");
-        exit();
-    } else {
-        $hashed_password = md5($Password_User); 
-        $sql = "SELECT * FROM supervisor WHERE Supervisor_Mail='$Supervisor_Mail' AND Password_User='$hashed_password' ;"; // removed password check
-        $result = mysqli_query($db, $sql);
-
-        if (mysqli_num_rows($result) === 1) {
-            $row = mysqli_fetch_row($result);
-            $email = $row[4];
-            session_start();
-            $_SESSION['Supervisor_Id'] = $row[0];
-            header("Location: StudentPages/children.php");
-            
-        } else {
-            $sql = "SELECT * FROM supervisor WHERE Supervisor_Mail='$Supervisor_Mail' ;"; // removed password check
-            $result = mysqli_query($db, $sql);
-            if(mysqli_num_rows($result)===1){
-                header("Location: index.php?error=Incorrect Email or Password");
-            } else{
-                
-                header("Location: index.php?error=Incorrect Email or Password");
-
-            }
-            exit();
-        }
-    }
-} else {
-    header("Location: index.php?error");
-    exit();
-}
+             
+               
+               <style>
+               .error{
+                  background: #f2dede;
+                  color:#a94442;
+                  padding: 10px;
+                  width:95%;
+                  border-radius: 5px;
+                  margin:20px auto;
+               }
+            </style>
+            </div>
+         </div>
+      </div>
+      <script src="StudentPages/assets/js/jquery-3.6.0.min.js"></script>
+      <script src="StudentPages/assets/js/popper.min.js"></script>
+      <script src="StudentPages/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+      <script src="StudentPages/assets/js/script.js"></script>
+   </body>
+   <!-- Mirrored from preschool.dreamguystech.com/html-template/login.php by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 28 Oct 2021 11:11:40 GMT -->
+</html>

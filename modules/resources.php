@@ -5,7 +5,7 @@ switch($vars['action']){
     case "displayResources":{
         
         session_start();
-    $user_id = $_SESSION['Student_Id'];
+        $user_id = $_SESSION['Student_Id'];
    
         $sql1 = "SELECT s.Class_Id  
          FROM study s

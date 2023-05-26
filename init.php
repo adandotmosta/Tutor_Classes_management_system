@@ -8,17 +8,22 @@ define('APP_LANG','en');
 
 include("lib/db.php");
 include("lib/utils.php");
+include("lib/func.user.php");
 include("lang/".APP_LANG.".php");
 
-include("lib/func.user.php");
+include("lang/".APP_LANG.".php");
+
 
 //It is very stupid to share passwords within GIT, but for demostration, we will close our eyes on this principle.
+
 $dbhost = 'localhost';
 $dbuser = 'root';
 $dbpass = '';
 $dbname = 'db_tutoring_classes';
 
 $db = new db($dbhost, $dbuser, $dbpass, $dbname);
+$vars=get_input_vars();
+$appuser=user_get_logged_user();
 
 
 ?>

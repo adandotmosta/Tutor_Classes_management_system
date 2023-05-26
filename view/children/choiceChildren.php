@@ -1,7 +1,9 @@
+
+
 <table class="table table-hover table-center mb-0 datatable" table-center>
    <thead>
       <tr>
-         <th>Image</th>
+         
          <th>Student ID</th>
          <th>LAST NAME</th>
          <th>FIRST NAME</th>
