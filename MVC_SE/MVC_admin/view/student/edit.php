@@ -1,0 +1,173 @@
+<div class="page-wrapper">
+   <div class="content container-fluid">
+      <div class="page-header">
+         <div class="row align-items-center">
+            <div class="col">
+               <h3 class="page-title">edit Students</h3>
+               <ul class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="students.php">Students</a></li>
+                  <li class="breadcrumb-item active">edit Students</li>
+               </ul>
+            </div>
+         </div>
+      </div>
+      <div class="row">
+         <div class="col-sm-12">
+            <div class="card">
+               <div class="card-body">
+                  <form method="POST">
+                     <div class="row">
+                        <div class="col-12">
+                           <h5 class="form-title"><span>Student Information</span></h5>
+                        </div>
+                        <div class="col-12" style="background-color:green">
+                           <div class="form-group">
+                              <h6> You must Choose One </h6>
+                              <input type="radio"  name="choice" onclick="choose(this)" id="choice"
+                                 value="1" required />Supervised<br> <br><input type="radio" required value="0"  name="choice"
+                                 onclick="choose(this)" id="choice" />Not SuperVised
+                           </div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                           <div class="form-group">
+                              <label>First Name</label>
+                              <input type="text" class="form-control" name="Student_FirstName" value="<?php echo $firstname;?>">
+                           </div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                           <div class="form-group">
+                              <label>Last Name</label>
+                              <input type="text" class="form-control" name="Student_LastName" value="<?php echo $lastname;?>">
+                           </div>
+                        </div>
+
+                        <div class="col-12 col-sm-6">
+                           <div class="form-group">
+                              <label>Student email</label>
+                              <input type="Student_Mail"  class="form-control" name="Student_Mail" value="<?php echo $Student_Mail;?>">
+                           </div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                           <div class="form-group">
+                              <label>Date of Birth</label>
+                              <div>
+                                 <input type="date" class="form-control" name="Student_Birthday"  value="<?php echo $dateofbirth;?>">
+                              </div>
+                           </div>
+                        </div>
+
+                        <div class="col-12 col-sm-6">
+                           <div class="form-group">
+                              <label>Mobile Number</label>
+                              <input type="text" class="form-control" name="Student_Phone_number"  value="<?php echo $phonenumber;?>">
+                           </div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                           <div class="form-group">
+                              <label>Student Image</label>
+                              <input type="file" class="form-control" name="image" >
+                           </div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                           <div class="form-group">
+                              <label> Student_Password</label>
+                              <input type="Student_Password" id="pass_user" class="form-control" name="Student_Password"  value="<?php echo "Secured";?>">
+                           </div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                           <div class="form-group">
+                              <label>Current Student_address</label>
+                              <textarea class="form-control" name="Student_address" > <?php echo $Student_adress; ?></textarea>
+                           </div>
+                        </div>
+                        <div class="col-12 col-sm-6" id="sup_list" style="display:none;">
+                           <div class="form-group">
+                              <label>Supervisor_Name</label>
+                              <input class="form-control" type="text" onkeyup="lister(this)" autocomplete="off" 
+                              name="s_name" id="searchbox" value="<?php echo $sup_name;  ?>">
+                              <div id="response"> </div>
+                           </div>
+                        </div>
+
+                        <div class="col-12">
+                           <button type="submit" class="btn btn-primary" name="Register">Edit</button>
+                        </div>
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+      <script>
+
+         function lister(button) {
+
+            var search_query = button.value;
+            console.log("h");
+            if (search_query != "") {
+               $.ajax({
+                  type: "post",
+                  data: {
+                     search: search_query
+                  },
+                  success: function (data) {
+
+                     $("#response").html(data);
+                     console.log("item is  " + search_query);
+                  },
+                  dataType: 'text'
+               });
+            }
+
+         }
+
+
+
+      </script>
+      <script>
+         $(document).on('click', '#check_me', function () {
+            var name = $(this).text();
+            console.log("successed");
+            $("#searchbox").val(name);
+            $("#response").html("");
+            $.ajax({
+               type: "post",
+               data: {
+                  accept: name
+               },
+               success: function (data) {
+                  console.log("choosed li");
+
+
+               },
+               dataType: 'text'
+            });
+
+
+         });
+      </script>
+
+      
+<script>
+         function choose(button) {
+            var name = button.value;
+            var accepted = "accepted";
+            if (name == "1") {
+               $("#sup_list").css("display", "block");
+               $('#pass_user').val("");
+               $('#pass_user').attr('disabled', 'disabled');
+
+
+
+
+            } else {
+               $("#sup_list").css("display", "none");
+               $('#pass_user').prop('disabled', false);
+
+            }
+
+
+
+
+         }
+         </script>

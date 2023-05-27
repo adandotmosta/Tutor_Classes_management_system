@@ -84,8 +84,7 @@ case "updatestudent":{
         }
     }
     $id = $_GET['id'];
-    $Query = "SELECT * FROM student WHERE Student_Id = $id;";
-    $res = $db->query($Query)->fetchArray();
+    $res = $db->query("SELECT * FROM student WHERE Student_Id = ?;",$id)->fetchArray();
     $Query2 = "SELECT * FROM supervisor WHERE Supervisor_Id = (?);";
     $res2 = $db->query($Query2, $res['Supervisor_Id'])->fetchArray();
     $sup_name = $res2['Supervisor_LastName']." ".$res2["Supervisor_FirstName"];

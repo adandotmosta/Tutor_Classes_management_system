@@ -47,11 +47,11 @@
 
                               <td class="text-right">
                                  <div class="actions">
-                                    <a href="index.php?action=updateteacher&id=<?php echo $teachers[$i][" Teacher_Id"];
+                                    <a href="index.php?action=updateteacher&id=<?php echo $teachers[$i]["Teacher_Id"];
                                        ?>" class="btn btn-sm bg-success-light mr-2">
                                        <i class="fas fa-pen"></i>
                                     </a>
-                                    <a href="index.php?action=deleteteacher&id=<?php echo $teachers[$i][" Teacher_Id"];
+                                    <a href="index.php?action=deleteteacher&id=<?php echo $teachers[$i]["Teacher_Id"];
                                        ?>" class="btn btn-sm bg-danger-light">
                                        <i class="fas fa-trash"></i>
                                     </a>

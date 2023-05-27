@@ -56,11 +56,11 @@
                               </td>
                               <td class="text-right">
                                  <div class="actions">
-                                    <a href="index.php?action=updatestudent&id=<?php echo $students[$i][" Student_Id"];
+                                    <a href="index.php?action=updatestudent&id=<?php echo $students[$i]["Student_Id"];
                                        ?>" class="btn btn-sm bg-success-light mr-2">
                                        <i class="fas fa-pen"></i>
                                     </a>
-                                    <a href="index.php?action=deletestudent&id=<?php echo $students[$i][" Student_Id"];
+                                    <a href="index.php?action=deletestudent&id=<?php echo $students[$i]["Student_Id"];
                                        ?>" class="btn btn-sm bg-danger-light">
                                        <i class="fas fa-trash"></i>
                                     </a>
