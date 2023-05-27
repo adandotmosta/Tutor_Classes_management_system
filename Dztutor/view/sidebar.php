@@ -73,7 +73,8 @@
 <br>
 <br>
 <li>
-<a href="index.php?action=logout"><i class=""></i> <span>Logout</span></a>
+<a href="index.php?action=logout"><i class="fas fa-sign-out-alt" style="color: red;"></i>
+ <span>Logout</span></a>
 </li>
 
 
