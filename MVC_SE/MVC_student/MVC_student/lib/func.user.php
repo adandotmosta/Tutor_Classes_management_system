@@ -76,7 +76,7 @@ function user_process_forgotpswrd($vars) {
     // Send the password reset email with a link to the password reset page
     $to = $vars['email'];
     $subject = "Password Reset";
-	$resetLink = "localhost/Tutor_Classes_management_system-studentMVC-2023-05-26-MVC/Tutor_Classes_management_system-master/MVC_admin/Tutor_Classes_management_system-MVC/index.php?action=Reset&secret=" . base64_encode($to) . "&token=" . $token."";
+	$resetLink = "www.dztutor.com/index.php?action=Reset&secret=" . base64_encode($to) . "&token=" . $token."";
     $message = '<div>
      <p><b>Hello!</b></p>
      <p>You are receiving this email because we received a password reset request for your account.</p>
