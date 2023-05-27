@@ -15,7 +15,7 @@ case "addsupervisor":{
         $Supervisor_Mail = $_POST['Supervisor_Mail'];
         $Supervisor_Phone_number = $_POST['Supervisor_Phone_number'];
         $Supervisor_pass  = md5($_POST['Supervisor_Password']);
-        $db->query("INSERT INTO supervisor (Supervisor_Id,Supervisor_FirstName, Supervisor_LastName,School_Id, Supervisor_Mail,Password_User,Mobile_number) VALUES (?, ?, ?, ?, ?, ?,?)",'NULL', $Fname, $Lname,$_COOKIE['school_id'] ,$Supervisor_Mail,$Supervisor_pass, $Supervisor_Phone_number);
+        $db->query("INSERT INTO supervisor (Supervisor_FirstName, Supervisor_LastName,School_Id, Supervisor_Mail,Password_User,Mobile_number) VALUES ( ?, ?, ?, ?, ?,?)", $Fname, $Lname,$_COOKIE['school_id'] ,$Supervisor_Mail,$Supervisor_pass, $Supervisor_Phone_number);
 
         header("location: index.php?action=supervisorlist");
         exit;
