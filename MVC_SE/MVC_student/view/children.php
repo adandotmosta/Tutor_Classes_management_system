@@ -1,10 +1,11 @@
  
       
-       <div class="page-wrapper">
-            <div class="content container-fluid">
+            <div class="content container-fluid" style="height: 100%; width:100%;">
                <div class="page-header">
                   <div class="row align-items-center">
                      <div class="col">
+                        <br>
+                        <br>
                         <h3 class="page-title">Supervised student(s)</h3>
                         <ul class="breadcrumb">
                            <li class="breadcrumb-item"><a href="index.html">Table</a></li>
@@ -24,7 +25,7 @@
 <table class="table table-hover table-center mb-0 datatable" table-center>
    <thead>
       <tr>
-         <th>Student ID</th>
+         <th>Student</th>
          <th>LAST NAME</th>
          <th>FIRST NAME</th>
          <th>Email</th>
@@ -53,7 +54,6 @@
             </h5>
            
          </td>
-         <td><?php echo "{$result[$i]["Student_Id"]}"; ?></td>
          <td><?php echo "{$result[$i]["Student_LastName"]}"; ?></td>
          <td><?php echo "{$result[$i]["Student_FirstName"]}"; ?></td>
          <td><?php echo "{$result[$i]["Student_Mail"]}"; ?></td>
@@ -65,17 +65,11 @@
       <?php } ?>
    </tbody>
 </table>
-<button onclick="location.href='index.php?action=dashboard?id=<?php echo $id; ?>'">Logout</button>
-
-
+<br>
+<button class="btn btn-sm bg-success-light mr-2" onclick="location.href='index.php?action=logout'">Logout</button>
+<br>
                            </div>
                         </div>
                      </div>
                   </div>
-               </div>
-            </div>
-            <footer>
-               
-            </footer>
-         </div>
 </div>

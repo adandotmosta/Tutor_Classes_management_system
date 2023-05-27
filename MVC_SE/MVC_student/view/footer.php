@@ -1,6 +1,6 @@
  
 <footer>
-<p>Group6 </p>
+<p>Copyright <i class="fas fa-copyright"></i> DzTutor - 2023</p>
 </footer>
 
 </div>

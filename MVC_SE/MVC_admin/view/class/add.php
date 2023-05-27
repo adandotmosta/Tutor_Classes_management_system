@@ -70,12 +70,7 @@
     <input type="date" class="form-control" required name='endDate'>
     </div>
     </div>
-<div class="col-12 col-sm-6">
-<div class="form-group">
-<label>No of sessions</label>
-<input type="text" class="form-control" required name='numSessions'>
-</div>
-</div>
+
 <div class="col-12 col-sm-6">
 <div class="form-group">
 <label>Price</label>

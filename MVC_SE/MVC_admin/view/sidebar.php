@@ -6,59 +6,26 @@
                         <span>Main Menu</span>
                      </li>
                      <li class="">
-                        <a href="index.php?action=main"><i class="fas fa-user-graduate"></i> <span> Dashboard</span> <span class="menu-arrow"></span></a>
+                        <a href="index.php?action=main"><i class="fas fa-cogs"></i> <span> Dashboard</span></a>
                         <ul>
                            <li><a href="index.php?action=main">Admin Dashboard</a></li>
                         </ul>
                      </li>
                      <li class="">
-                        <a href="index.php?action=studentlist"><i class="fas fa-user-graduate"></i> <span> Student</span> <span class="menu-arrow"></span></a>
-                        <!-- <ul>
-                           <li><a href="index.php?action=studentlist">Student List</a></li> -->
-                          
-                           <!-- <a href="#"><i class="fas fa-user-graduate"></i> <span> Add Student / Supervisor</span> <span class="menu-arrow"></span></a> -->
-                           <!-- <ul>
-                           <li><a href="index.php?action=">Supervisor</a></li>
-                           <li><a href="index.php?action=">Student</a></li>
-
-                           </ul>
-                    
-                        </ul> -->
+                        <a href="index.php?action=studentlist"><i class="fas fa-user-graduate"></i> <span> Student</span></a>
                      </li>
                      <li class="">
-                        <a href="index.php?action=supervisorlist"><i class="fas fa-user-graduate"></i> <span> supervisor</span> <span class="menu-arrow"></span></a>
-                        <!-- <ul>
-                           <li><a href="index.php?action=studentlist">Student List</a></li> -->
-                          
-                           <!-- <a href="#"><i class="fas fa-user-graduate"></i> <span> Add Student / Supervisor</span> <span class="menu-arrow"></span></a> -->
-                           <!-- <ul>
-                           <li><a href="index.php?action=">Supervisor</a></li>
-                           <li><a href="index.php?action=">Student</a></li>
-
-                           </ul>
-                    
-                        </ul> -->
+                        <a href="index.php?action=supervisorlist"><i class='fa fa-address-card'></i> <span> Supervisor</span></a>
                      </li>
                      <li class="">
-                        <a href="index.php?action=listteacher"><i class="fas fa-chalkboard-teacher"></i> <span> Teachers</span> <span class="menu-arrow"></span></a>
-                        <!-- <ul>
-                           <li><a href="index.php?action=listteacher">Teacher List</a></li>
-                            <li><a href="add-teacher.php">Teacher Add</a></li> -->
-                        <!-- </ul> --> 
+                        <a href="index.php?action=listteacher"><i class="fas fa-chalkboard-teacher"></i> <span> Teachers</span></a> 
                      </li>
                    
 <li class="">
-<a href="index.php?action=classlist"><i class="fas fa-building"></i> <span> Classes</span> <span class="menu-arrow"></span></a>
+<a href="index.php?action=classlist"><i class="fas fa-building"></i> <span> Classes</span></a>
 </li>
                      <li class="">
-                        <a href="index.php?action=subjectlist"><i class="fas fa-book-reader"></i> <span> Subjects</span> <span class="menu-arrow"></span></a>
-                        <!-- <ul>
-                           <li><a href="index.php?action=subjectlist">Subject List</a></li>
-                            <li><a href="add-subject.php">Subject Add</a></li> -->
-                        <!-- </ul>
-                     </li> --> 
-
-
+                        <a href="index.php?action=subjectlist"><i class="fas fa-book-reader"></i> <span> Subjects</span></a>
                      <li>
                         <a href="index.php?action=feeslist"><i class="fas fa-comment-dollar"></i> <span>Fees</span></a>
                      </li>
@@ -73,7 +40,8 @@
 <br>
 <br>
 <li>
-<a href="index.php?action=logout"><i class=""></i> <span>Logout</span></a>
+<a class="btn btn-sm bg-success-light mr-2"  href="index.php?action=logout">
+<i class='fas fa-sign-out-alt'></i><span>Logout</span></a>
 </li>
 
 

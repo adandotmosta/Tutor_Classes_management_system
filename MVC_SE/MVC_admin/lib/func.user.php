@@ -91,12 +91,12 @@ function user_process_signup($vars){
 	setcookie("app_email", $vars['email'], time()+(3600*24),"/");
 	setcookie("app_pass", md5($vars['pass']), time()+(3600*24),"/");
 	$ret['status']=1;
-	$ret['error']='';
+	$ret['error']='';	
 	return $ret;
 }
 
-include_once("../../SMTP/SMTP/class.phpmailer.php");
-include_once("../../SMTP/SMTP/class.smtp.php");
+include_once("../SMTP/SMTP/class.phpmailer.php");
+include_once("../SMTP/SMTP/class.smtp.php");
 function user_process_forgotpswrd($vars) {
     global $db;
     $ret['status'] = 0;
@@ -120,7 +120,7 @@ function user_process_forgotpswrd($vars) {
     // Send the password reset email with a link to the password reset page
     $to = $vars['email'];
     $subject = "Password Reset";
-	$resetLink = "localhost/FINALISE/MVC_SE/MVC_admin/index.php?action=Reset&secret=" . base64_encode($to) . "&token=" . $token."";
+    $resetLink = "localhost/FINALSE/MVC_SE/MVC_admin/index.php?action=Reset&secret=" . base64_encode($to) . "&token=" . $token."";
     $message = '<div>
      <p><b>Hello!</b></p>
      <p>You are receiving this email because we received a password reset request for your account.</p>

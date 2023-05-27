@@ -75,7 +75,6 @@
           <thead>
             <tr>
               <th>Course Name</th>
-              <th>Class ID</th>
               <th>Absences</th>
             </tr>
           </thead>
@@ -88,10 +87,7 @@
                   <?php echo $classer[$i]["class_name"]; ?>
                 </td>
                 <td>
-                  <?php echo $classer[$i]["Class_Id"]; ?>
-                </td>
-                <td>
-                  <?php echo $classer[$i]["Student_Absence"]; ?>
+                  <?php echo $classer[$i]["count"]; ?>
                 </td>
               </tr>
            <?php  } ?>
@@ -104,6 +100,8 @@
             <tr>
               <th>Amount</th>
               <th>Status</th>
+              <th>Date</th>
+              <th>Class</th>
             </tr>
           </thead>
           <tbody>
@@ -121,6 +119,13 @@
                   <?php else: ?>
                     Unpaid
                   <?php endif; ?>
+                </td>
+                <td>
+                <?php echo $row[$i]["Fees_Date"]; ?>
+                </td>
+                <td>
+                <?php $class = $db->query("Select * from class where Class_Id = (?);",$row[$i]["Class_Id"])->fetchArray();
+                echo $class['class_name'] ?>
                 </td>
               </tr>
            <?php  }?>

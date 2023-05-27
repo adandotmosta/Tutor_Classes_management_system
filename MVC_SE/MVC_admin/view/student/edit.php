@@ -20,14 +20,15 @@
                         <div class="col-12">
                            <h5 class="form-title"><span>Student Information</span></h5>
                         </div>
-                        <div class="col-12" style="background-color:green">
+                        <div class="col-12 col-sm-6">
                            <div class="form-group">
-                              <h6> You must Choose One </h6>
-                              <input type="radio"  name="choice" onclick="choose(this)" id="choice"
-                                 value="1" required />Supervised<br> <br><input type="radio" required value="0"  name="choice"
-                                 onclick="choose(this)" id="choice" />Not SuperVised
-                           </div>
-                        </div>
+                              <h6>You Must choose One</h6>
+                              <br>
+    <select class="form-control" name="choice" onchange="choose(this)">
+      <option value="1">Supervised</option>
+      <option value="0">Not Supervised</option>
+    </select>
+  </div>
                         <div class="col-12 col-sm-6">
                            <div class="form-group">
                               <label>First Name</label>

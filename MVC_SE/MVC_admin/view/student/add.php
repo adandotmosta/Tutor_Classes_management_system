@@ -25,12 +25,15 @@
                         
 
 
-                        <div class="col-12" style="background-color:green">
+                        <div class="col-12 col-sm-6">
                            <div class="form-group">
-                              <h6> You must Choose One </h6>
-                              <input type="radio"  name="choice" onclick="choose(this)" id="choice"
-                                 value="1" required />Supervised<br> <br><input type="radio" required value="0"  name="choice"
-                                 onclick="choose(this)" id="choice" />Not SuperVised
+                              <h6>You Must choose One</h6>
+                              <br>
+    <select class="form-control" name="choice" onchange="choose(this)">
+      <option value="1">Supervised</option>
+      <option value="0">Not Supervised</option>
+    </select>
+  </div>
                            </div>
                         </div>
                         <div class="col-12 col-sm-6">
@@ -97,13 +100,7 @@
 
                            </div>
                         </div>
-                        <div class="col-12 col-sm-6">
-                           <div class="form-group">
-                              <input type="radio" name="choice" onclick="choose(this)" id="choice"
-                                 value="1" />Supervised<input type="radio" value="0" name="choice"
-                                 onclick="choose(this)" id="choice" />Not SuperVised
-                           </div>
-                        </div>
+                        
                         <div class="col-12">
                            <button type="submit" class="btn btn-primary" name="Register">Add</button>
                         </div>

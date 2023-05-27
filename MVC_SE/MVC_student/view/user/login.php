@@ -2,7 +2,8 @@
         <div class="container">
             <div class="signin-content">
                 <div class="signin-image">
-                    <figure><img src="assets/img/logo.png" alt="sing up image"></figure>
+                    <figure><a href="../.."><img src="assets/img/logo.png" alt="sing up image"></a></figure>
+                    <a href="index.php?action=forgotpswrd" class="signup-image-link">Forgot password</a>
                 </div>
 
                 <div class="signin-form">

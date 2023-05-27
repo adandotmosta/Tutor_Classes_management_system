@@ -42,12 +42,7 @@
     <input type="date" class="form-control" required name='endDate' value ="<?php echo $classtoedit['Finishing_Date'] ?>">
     </div>
     </div>
-<div class="col-12 col-sm-6">
-<div class="form-group">
-<label>No of sessions</label>
-<input type="text" class="form-control" required name='numSessions' value ="<?php echo $classtoedit['Number_Of_Sections'] ?>">
-</div>
-</div>
+
 <div class="col-12 col-sm-6">
 <div class="form-group">
 <label>Price</label>
