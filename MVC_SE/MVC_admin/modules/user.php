@@ -34,15 +34,50 @@ switch($vars['action']){
          }else{
             header("location: index.php?action=login&error_message=".urlencode($ret['error']));
          }
-         
          exit;        
-    }break;    
-    
+    }break; 
+
+    case "forgotpswrd":{
+      include("view/headerlog.php");
+      include("view/user/forgotpswrd.php");
+      exit;
+  }break;
+
+  case "do_forgotpswrd":{
+      $ret = user_process_forgotpswrd($vars);
+
+      if ($ret['status'] == 1) {
+          header("location: index.php?action=login&success_message=".urlencode($ret['message']));
+      } else {
+          header("location: index.php?action=forgotpswrd&error_message=".urlencode($ret['error']));
+      }
+      exit;
+  }break;   
+
+  case "Reset":{
+   include("view/headerlog.php");
+   include("view/user/Reset.php");
+   exit;
+}break;
+
+case "do_Reset":
+    $ret = user_process_Reset($vars); 
+   if ($ret['error'] == '') {
+       // Password reset successful, redirect to login page
+       header("Location: index.php?action=login&success_message=Password reset successful. Please log in with your new password.");
+   } else {
+       // Password reset failed, display error message on Reset page
+       $vars['error_message'] = $ret['error'];
+       include("view/headerlog.php");
+       include("view/user/Reset.php");
+       exit;
+   }
+   break;
     case "logout":{
       setcookie("school_id","",-1,"/");
       setcookie("schoolname","",-1,"/");
-	    setcookie("app_email", "" , -1,"/");
-	    setcookie("app_pass", "", -1,"/");
+	  setcookie("app_email", "" , -1,"/");
+	  setcookie("app_pass", "", -1,"/");
        $appuser=0;
        unset($vars);        
 	    header("location: index.php"); 

@@ -1513,6 +1513,7 @@ div.dataTables_wrapper div.dataTables_info {
     margin-bottom: 5px;
     padding: 0 25px;
 }
+/*
 .sidebar-overlay {
     background-color: rgba(0, 0, 0, 0.6);
     display: none;
@@ -1522,7 +1523,7 @@ div.dataTables_wrapper div.dataTables_info {
     top: 60px;
     width: 100%;
     z-index: 1000;
-}
+}*/
 .sidebar-overlay.opened {
     display: block;
 }

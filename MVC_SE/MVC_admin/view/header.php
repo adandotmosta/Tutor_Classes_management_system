@@ -27,6 +27,13 @@ https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
     </script> 
 </head>
 <body>
+   
+<script>
+    window.onunload = function(){};
+    if (window.performance && window.performance.navigation.type === window.performance.navigation.TYPE_BACK_FORWARD) {
+        location.reload();
+    }
+</script>
 <div class="main-wrapper">
 <div class="header">
             <div class="header-left">

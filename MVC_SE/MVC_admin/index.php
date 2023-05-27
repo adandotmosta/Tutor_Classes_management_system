@@ -4,7 +4,7 @@ include("init.php");
 /*if (!(isset($_COOKIE['school_id']))) {
     header("location:index.php?action=login");
 }*/
-$public_actions=array('do_login','signup','do_signup');
+$public_actions=array('do_login','signup','do_signup','forgotpswrd','do_forgotpswrd','Reset','do_Reset');
 
 //non-logged user are forced to the login page...
 if ($appuser==0  and !in_array($vars['action'],$public_actions)){
@@ -27,10 +27,6 @@ if (is_array($appuser)){
 	include("modules/resources.php");
 	include("modules/fees.php");
 	include("modules/supervisor.php");
-
-
-
-
 
 }
 ?>
