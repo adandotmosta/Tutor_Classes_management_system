@@ -35,7 +35,7 @@ function user_process_login($vars){
     if (strlen($ret['error'])>0)return  $ret;
     
     //search for it in the database ?
-	$items = $db->query("SELECT * FROM Supervisor WHERE (Supervisor_Mail) = ? and Password_User= ?",$vars['email'], md5($vars['pass']))->fetchAll();
+	$items = $db->query("SELECT * FROM supervisor WHERE (Supervisor_Mail) = ? and Password_User= ?",$vars['email'], md5($vars['pass']))->fetchAll();
 	if (count($items)==0){
 	        $ret['error']=LANG_INCORRECT_EMAIL_PASSWORD;
 	        return $ret;
