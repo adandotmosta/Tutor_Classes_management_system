@@ -49,7 +49,7 @@
                                 <tbody>
                                 <?php 
             for ($i=0;$i<count($absences);$i++){
-              $student = $db->query("SELECT CONCAT(Student_LastName,' ',Student_FirstName) AS Fullname FROM Student WHERE Student_Id=(?);", $absences[$i]['Student_Id'])->fetchArray();
+              $student = $db->query("SELECT CONCAT(Student_LastName,' ',Student_FirstName) AS Fullname FROM student WHERE Student_Id=(?);", $absences[$i]['Student_Id'])->fetchArray();
               $student_name = $student["Fullname"];
 
               $session = $db->query("SELECT Session_Start FROM session_ WHERE Session_Id= (?);", $absences[$i]['Session_Id'])->fetchArray();

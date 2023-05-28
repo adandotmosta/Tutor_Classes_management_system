@@ -50,7 +50,7 @@ switch($vars['action']) {
                     $status = $_POST['status'];
                     $date = date('Y-m-d', strtotime($_POST['Fees_Date']));
                     
-                    $db->query("INSERT INTO fees (Fees_Id,Fees_Amount, Student_Id, Class_Id, Fees_Status, Fees_Date) VALUES (?,?, ?, ?, ?, ?)",'NULL',$amount, $id_s, $id_c, $status, $date);
+                    $db->query("INSERT INTO fees (Fees_Id,Fees_Amount, Student_Id, Class_Id, Fees_Status, Fees_Date) VALUES (?,?, ?, ?, ?, ?)",NULL,$amount, $id_s, $id_c, $status, $date);
                     header("location: index.php?action=feeslist");
                     
 
