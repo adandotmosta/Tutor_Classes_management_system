@@ -1,6 +1,9 @@
  
 <footer>
-<p>Copyright <i class='fa fa-copyright'></i> DzTutor 2023 </p>
+  <p>Copyright <i class='fa fa-copyright'></i> DzTutor 2023</p>
+  <a href="https://instagram.com/dztutor2023?igshid=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer">
+    <i class='fab fa-instagram fa-2x'></i>
+  </a>
 </footer>
 
 </div>
