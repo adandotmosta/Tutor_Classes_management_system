@@ -44,10 +44,10 @@
                     </form>
                 </div>
                
-                <div class="signup-image">
+                <!-- <div class="signup-image">
                     <figure><img src="assets/img/logo-small.png" alt="sing up image"></figure>
                     <a href="index.php?action=login" class="signup-image-link">I am already member</a>
-                </div>
+                </div> -->
             </div>
         </div>
     </section>
