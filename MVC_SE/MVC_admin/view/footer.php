@@ -4,6 +4,10 @@
   <a href="https://instagram.com/dztutor2023?igshid=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer">
     <i class='fab fa-instagram fa-2x'></i>
   </a>
+  <a href="https://youtube.com/@DZTUTOR" target="_blank" rel="noopener noreferrer">
+  <i class="fab fa-youtube fa-2x"></i>
+</a>
+
 </footer>
 
 </div>
