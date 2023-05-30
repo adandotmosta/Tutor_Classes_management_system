@@ -51,8 +51,8 @@ function user_process_login($vars){
 	return $ret;
 }
 
-include_once("../../SMTP/SMTP/class.phpmailer.php");
-include_once("../../SMTP/SMTP/class.smtp.php");
+include_once("../SMTP/SMTP/class.phpmailer.php");
+include_once("../SMTP/SMTP/class.smtp.php");
 function user_process_forgotpswrd($vars) {
     global $db;
     $ret['status'] = 0;
@@ -76,7 +76,7 @@ function user_process_forgotpswrd($vars) {
     // Send the password reset email with a link to the password reset page
     $to = $vars['email'];
     $subject = "Password Reset";
-	$resetLink = "http://localhost/Tutor_Classes_management_system-studentMVC-2023-05-26-MVC/Tutor_Classes_management_system-master/MVC_student/Tutor_Classes_management_system-MVC/index.php?action=Reset&secret=" . base64_encode($to) . "&token=" . $token."";
+	$resetLink = "www.dztutor.com/MVC_SE/MVC_student/index.php?action=Reset&secret=" . base64_encode($to) . "&token=" . $token."";
     $message = '<div style="background-color: #f2f2f2; padding: 20px;">
     <p style="font-size: 18px; font-weight: bold; margin-bottom: 10px;">Hello!</p>
     <p style="font-size: 16px; margin-bottom: 20px;">You are receiving this email because we received a password reset request for your account.</p>
