@@ -31,7 +31,7 @@
                               <br>
     <select class="form-control" name="choice" onchange="choose(this)">
       <option value="1">Supervised</option>
-      <option value="0">Not Supervised</option>
+      <option value="0" selected>Not Supervised</option>
     </select>
   </div>
                            </div>

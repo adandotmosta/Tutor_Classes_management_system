@@ -40,7 +40,7 @@
                                                     <label>Status</label>
                                                     <select class="form-control" name="status">
                                                         <option value="1">Paid</option>
-                                                        <option value="0">Unpaid</option>
+                                                        <option value="0" >Unpaid</option>
                                                     </select>
 
                                                 </div>
