@@ -33,10 +33,13 @@ if ($result->numRows() > 0) {
 
 // Retrieve courses info from database
 $sql_classer = "SELECT class.class_name, class.Class_Id, COUNT(absence.Student_Id) as count
-        FROM (study
-        JOIN class ON study.Class_Id = class.Class_Id) Join absence ON absence.Student_Id = study.Student_Id
-        WHERE study.Student_Id = ?
-        GROUP BY class.Class_Id , count ";
+FROM study
+JOIN class ON study.Class_Id = class.Class_Id
+JOIN absence ON absence.Student_Id = study.Student_Id
+WHERE study.Student_Id = 'your_student_id'
+GROUP BY class.class_name, class.Class_Id
+ORDER BY study.Student_Starting_Date DESC;
+";
 
 // Retrieve fees info
 $sqlfees = "SELECT Fees_Amount,Fees_Status,DATE_FORMAT(Fees_Date, '%Y-%m-%d') AS Fees_Date,Class_Id
