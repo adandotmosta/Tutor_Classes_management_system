@@ -1,23 +1,4 @@
-<?php
 
-if(isset($_POST['search'])){
-    $searched =$_POST['search'];
-    $students = $db->query("SELECT * FROM student WHERE Student_LastName LIKE '%{$searched}%' AND Student_Id IN (SELECT Student_Id FROM supervisor WHERE School_Id=(?));" , $School_id)->fetchAll();
-    $html ='<ul class="list-group">';
-    if(count($students) != 0){
-
-    for($i=0;$i<count($students);$i++){
-        $html .="<li class='list-group-item' ><a>".$students[$i]['Student_LastName'] ." ".$students[$i]['Student_FirstName']."  </a></li>";
-        
-    }
-
-}
-   $html .='</ul>';
-   
-   exit($html);
-}
-
-?>
 <div class="page-wrapper">
             <div class="content container-fluid">
 

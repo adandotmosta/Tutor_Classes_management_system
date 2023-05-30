@@ -13,6 +13,23 @@ switch($vars['action']) {
 
     case "addfees":{
         $School_id = $_COOKIE['school_id'];
+        
+if(isset($_POST['search'])){
+    $searched =$_POST['search'];
+    $students = $db->query("SELECT * FROM student WHERE Student_LastName LIKE '%{$searched}%' AND Supervisor_Id IN (SELECT Supervisor_Id FROM supervisor WHERE School_Id=(?));" , $School_id)->fetchAll();
+    $html ='<ul class="list-group">';
+    if(count($students) != 0){
+
+    for($i=0;$i<count($students);$i++){
+        $html .="<li class='list-group-item' ><a>".$students[$i]['Student_LastName'] ." ".$students[$i]['Student_FirstName']."  </a></li>";
+        
+    }
+
+}
+   $html .='</ul>';
+   
+   exit($html);
+}
 
         $selects = $db->query("SELECT * FROM class WHERE School_Id= (?)", $_COOKIE['school_id'])->fetchAll();
         $options = '';
@@ -70,6 +87,23 @@ switch($vars['action']) {
     
     case "updatefee":{
         $id_f = $_GET['id'];
+        
+if(isset($_POST['search'])){
+    $searched =$_POST['search'];
+    $students = $db->query("SELECT * FROM student WHERE Student_LastName LIKE '%{$searched}%' AND Supervisor_Id IN (SELECT Supervisor_Id FROM supervisor WHERE School_Id=(?));",$_COOKIE['school_id'] )->fetchAll();
+    $html ='<ul class="list-group">';
+    if(count($students) != 0){
+
+    for($i=0;$i<count($students);$i++){
+        $html .="<li class='list-group-item' ><a>".$students[$i]['Student_LastName'] ." ".$students[$i]['Student_FirstName']."  </a></li>";
+        
+    }
+
+}
+   $html .='</ul>';
+   
+   exit($html);
+}
         $cls_id = $_GET['c_id'];
         $feetoedit=$db->query("SELECT * FROM fees WHERE Fees_Id=(?);", $id_f)->fetchArray();
 
