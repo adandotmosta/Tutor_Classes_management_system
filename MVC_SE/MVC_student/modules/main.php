@@ -36,7 +36,7 @@ $sql_classer = "SELECT class.class_name, class.Class_Id, COUNT(absence.Student_I
         FROM (study
         JOIN class ON study.Class_Id = class.Class_Id) Join absence ON absence.Student_Id = study.Student_Id
         WHERE study.Student_Id = ?
-        ORDER BY study.Student_Starting_Date DESC";
+        GROUP BY class.Class_Id , count ";
 
 // Retrieve fees info
 $sqlfees = "SELECT Fees_Amount,Fees_Status,DATE_FORMAT(Fees_Date, '%Y-%m-%d') AS Fees_Date,Class_Id
