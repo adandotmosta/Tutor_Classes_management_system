@@ -36,10 +36,8 @@ if ($result->numRows() > 0) {
  FROM study
  JOIN class ON study.Class_Id = class.Class_Id
  JOIN absence ON absence.Student_Id = study.Student_Id
- WHERE study.Student_Id = (?);
- GROUP BY class.class_name, class.Class_Id
- ORDER BY study.Student_Starting_Date DESC;
- ";
+ WHERE study.Student_Id = (?);";
+
 
 // Retrieve fees info
 $sqlfees = "SELECT Fees_Amount,Fees_Status,DATE_FORMAT(Fees_Date, '%Y-%m-%d') AS Fees_Date,Class_Id
