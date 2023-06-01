@@ -50,19 +50,6 @@
                                  value="<?php echo $mobile_number;?>">
                            </div>
                         </div>
-                        <div class="col-12 col-sm-6">
-                           <div class="form-group">
-                              <label> Supervisor_Password</label>
-                              <input type="Supervisor_Password" class="form-control" name="Supervisor_Password"
-                                 value="<?php echo $pass;?>">
-                           </div>
-                        </div>
-                        <div class="col-12 col-sm-6">
-                           <div class="form-group">
-                              <label>Confirm Supervisor_Password</label>
-                              <input type="Supervisor_Password" class="form-control">
-                           </div>
-                        </div>
 
                      </div>
                      <div class="col-12">

@@ -33,7 +33,7 @@ case "updatesupervisor":{
     $f_name = $res['Supervisor_FirstName'];
     $l_name = $res['Supervisor_LastName'];
     $email = $res['Supervisor_Mail'];
-    $pass = $res['Password_User'];
+  //  $pass = $res['Password_User'];
     $mobile_number = $res['Mobile_number'];
     if (isset($_POST['Register'])) {
         $Fname = $_POST['Supervisor_FirstName'];
@@ -44,7 +44,7 @@ case "updatesupervisor":{
         if($Supervisor_pass!=$pass){
             $Supervisor_pass = md5($pass);
         }
-        $db->query("UPDATE supervisor SET Supervisor_FirstName=(?), Supervisor_LastName=(?), Supervisor_Mail=(?),Mobile_number=(?),Password_User=(?) WHERE Supervisor_Id=(?)", $Fname, $Lname, $Supervisor_Mail, $Supervisor_Phone_number,$Supervisor_pass,$id );
+        $db->query("UPDATE supervisor SET Supervisor_FirstName=(?), Supervisor_LastName=(?), Supervisor_Mail=(?),Mobile_number=(?) WHERE Supervisor_Id=(?)", $Fname, $Lname, $Supervisor_Mail, $Supervisor_Phone_number,$id );
         header("location:index.php?action=supervisorlist");
 
     }
