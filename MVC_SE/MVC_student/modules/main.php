@@ -32,7 +32,7 @@ if ($result->numRows() > 0) {
 }
 
 // Retrieve courses info from database
- $sql_classer = "SELECT class.class_name, class.Class_Id, study.absent as count
+ $sql_classer = "SELECT class.class_name, class.Class_Id, study.Student_Absence as count
  FROM study
  JOIN class ON study.Class_Id = class.Class_Id
  JOIN absence ON absence.Student_Id = study.Student_Id
