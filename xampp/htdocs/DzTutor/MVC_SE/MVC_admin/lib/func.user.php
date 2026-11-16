@@ -137,8 +137,8 @@ function user_process_forgotpswrd($vars) {
 	$mail->SMTPSecure = "tls";      
 	$mail->Host = 'smtp.gmail.com';
 	$mail->Port = 587; 
-	$mail->Username = "dztutor9@gmail.com";   //Enter your username/emailid
-	$mail->Password = "lbmtmpgxgtbdortn";   //Enter your password
+	$mail->Username = "YOUR_EMAIL@gmail.com";   //Enter your username/emailid
+	$mail->Password = "YOUR_APP_PASSWORD";   //Enter your password
 	$mail->FromName = "DZ TUTOR";
 	$mail->AddAddress($to);
 	$mail->Subject = "Reset Password";
@@ -146,7 +146,7 @@ function user_process_forgotpswrd($vars) {
 	$mail->Body =$message;
 	$mail->SMTPDebug = SMTP::DEBUG_SERVER;
     // Set email content
-    $mail->setFrom("dztutor9@gmail.com", "DZ TUTOR");
+    $mail->setFrom("YOUR_EMAIL@gmail.com", "DZ TUTOR");
     // Send email
     if ($mail->send()) {
         $ret['status'] = 1;
